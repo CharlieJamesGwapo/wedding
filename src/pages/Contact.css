@@ -230,11 +230,13 @@
   padding: 12px 24px;
   background: white;
   border-radius: 25px;
-  text-decoration: none;
+  border: none;
   color: #666;
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .social-link:hover {

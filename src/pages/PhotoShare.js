@@ -41,7 +41,6 @@ const PhotoShare = () => {
   const [dragActive, setDragActive] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [useCamera, setUseCamera] = useState(false);
   const fileInputRef = useRef(null);
   const cameraInputRef = useRef(null);
 
@@ -61,17 +60,14 @@ const PhotoShare = () => {
     const file = e.target.files[0];
     if (file) {
       validateAndSetFile(file);
-      setUseCamera(false);
     }
   };
 
   const openCamera = () => {
-    setUseCamera(true);
     cameraInputRef.current?.click();
   };
 
   const openFileSelector = () => {
-    setUseCamera(false);
     fileInputRef.current?.click();
   };
 
@@ -148,7 +144,6 @@ const PhotoShare = () => {
       }
       
       // Create a preview URL and convert to base64 for storage
-      const photoUrl = URL.createObjectURL(selectedFile);
       
       // Convert file to base64 for persistent storage
       const reader = new FileReader();
@@ -205,7 +200,6 @@ const PhotoShare = () => {
     setUploadError('');
     setUploadProgress(0);
     setDragActive(false);
-    setUseCamera(false);
   };
 
   return (

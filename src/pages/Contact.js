@@ -230,18 +230,18 @@ const Contact = () => {
               general adventures and see some behind-the-scenes moments:
             </p>
             <div className="social-links">
-              <a href="#" className="social-link">
+              <button className="social-link" onClick={() => window.open('https://instagram.com', '_blank')}>
                 <span className="social-icon">📷</span>
                 <span>Instagram</span>
-              </a>
-              <a href="#" className="social-link">
+              </button>
+              <button className="social-link" onClick={() => window.open('https://facebook.com', '_blank')}>
                 <span className="social-icon">📘</span>
                 <span>Facebook</span>
-              </a>
-              <a href="#" className="social-link">
+              </button>
+              <button className="social-link" onClick={() => window.open('https://spotify.com', '_blank')}>
                 <span className="social-icon">🎵</span>
                 <span>Spotify Playlist</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
