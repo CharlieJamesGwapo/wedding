@@ -1,0 +1,339 @@
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.event-card {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #d4a574, #8b7355);
+}
+
+.event-card.ceremony::before {
+  background: linear-gradient(90deg, #8b7355, #d4a574);
+}
+
+.event-icon {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.event-card h2 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.event-details {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.detail-row .icon {
+  font-size: 1.5rem;
+  min-width: 30px;
+  text-align: center;
+  color: #d4a574;
+}
+
+.detail-row h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.detail-row p {
+  color: #666;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.detail-row .note {
+  font-style: italic;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.detail-row .address {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.calendar-btn {
+  background: #d4a574;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.calendar-btn:hover {
+  background: #b8935f;
+  transform: translateY(-2px);
+}
+
+.venue-info {
+  margin-bottom: 4rem;
+}
+
+.venue-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  background: #fafafa;
+  padding: 3rem;
+  border-radius: 15px;
+}
+
+.venue-description p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.venue-features h3 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.venue-features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.venue-features li {
+  color: #666;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.venue-features li::before {
+  content: attr(data-icon);
+  position: absolute;
+  left: 0;
+}
+
+.venue-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.venue-detail-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.venue-detail-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.detail-icon {
+  font-size: 1.5rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+.detail-header h5 {
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.detail-content {
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.detail-content:last-child {
+  margin-bottom: 0;
+}
+
+.map-section {
+  margin-bottom: 4rem;
+}
+
+.map-container {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+}
+
+.map-actions {
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  background: #fafafa;
+  flex-wrap: wrap;
+}
+
+.btn-map {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #d4a574;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #b8935f;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: white;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #f8f8f8;
+  border-color: #d4a574;
+  color: #d4a574;
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  font-size: 1rem;
+}
+
+.transport-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.transport-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.transport-item .icon {
+  font-size: 2rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.transport-item h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.transport-item p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.map-embed {
+  min-height: 400px;
+}
+
+@media (max-width: 768px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .event-card {
+    padding: 2rem;
+  }
+  
+  .venue-content {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+  
+  .map-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .map-info {
+    padding: 2rem;
+  }
+  
+  .map-embed {
+    height: 300px;
+  }
+  
+  .weather-section {
+    margin-bottom: 3rem;
+  }
+}

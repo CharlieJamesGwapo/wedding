@@ -1,0 +1,188 @@
+.animated-countdown {
+  text-align: center;
+  margin: 3rem 0;
+  position: relative;
+}
+
+.countdown-title {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.countdown-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #3a3a3a;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.decorative-line {
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto;
+}
+
+.heart-animation {
+  font-size: 3rem;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  display: block;
+  margin: 0 auto;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.3); }
+  70% { transform: scale(1); }
+}
+
+.countdown-circles {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.countdown-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  animation: fadeInUp 1s ease-out backwards;
+}
+
+.countdown-circle:nth-child(1) { animation-delay: 0.1s; }
+.countdown-circle:nth-child(2) { animation-delay: 0.2s; }
+.countdown-circle:nth-child(3) { animation-delay: 0.3s; }
+.countdown-circle:nth-child(4) { animation-delay: 0.4s; }
+
+.progress-ring {
+  transform: rotate(-90deg);
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s;
+  transform-origin: 50% 50%;
+}
+
+.progress-ring__circle--progress {
+  animation: progressAnimation 2s ease-out forwards;
+}
+
+@keyframes progressAnimation {
+  from {
+    stroke-dashoffset: 326.73;
+  }
+  to {
+    stroke-dashoffset: var(--final-offset, 0);
+  }
+}
+
+.countdown-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+}
+
+.countdown-number .number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #3a3a3a;
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.countdown-number .label {
+  display: block;
+  font-size: 0.7rem;
+  color: #6a6a6a;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-top: 0.5rem;
+  font-family: 'Lato', sans-serif;
+}
+
+.countdown-message {
+  animation: fadeInUp 1s ease-out 0.5s backwards;
+}
+
+.countdown-message p {
+  color: #5a5a5a;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.countdown-message .decorative-line {
+  margin-top: 1rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .countdown-circles {
+    gap: 1rem;
+  }
+  
+  .countdown-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .progress-ring {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .progress-ring__circle {
+    r: 42;
+    cx: 50;
+    cy: 50;
+  }
+  
+  .countdown-number .number {
+    font-size: 1.5rem;
+  }
+  
+  .countdown-number .label {
+    font-size: 0.6rem;
+  }
+  
+  .countdown-title h2 {
+    font-size: 2rem;
+  }
+  
+  .heart-animation {
+    font-size: 2.5rem;
+  }
+  
+  .decorative-line {
+    width: 80px;
+  }
+}

@@ -1,0 +1,236 @@
+.dress-code-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.dress-code-intro h2 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.dress-code-intro p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.attire-guide {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.attire-section {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.attire-section h3 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.attire-recommendations {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.attire-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.attire-icon {
+  font-size: 2rem;
+  min-width: 50px;
+  text-align: center;
+}
+
+.attire-item h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.attire-item p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.color-palette-section {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.color-palette-section h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.palette-description {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.color-palette {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.color-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.color-swatch {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.color-name {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.practical-tips {
+  margin-bottom: 4rem;
+}
+
+.practical-tips h2 {
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.tip-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.tip-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.tip-card h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.tip-card p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.what-to-avoid {
+  background: #fafafa;
+  padding: 3rem;
+  border-radius: 15px;
+  margin-bottom: 4rem;
+}
+
+.what-to-avoid h2 {
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.avoid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.avoid-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avoid-icon {
+  font-size: 1.5rem;
+  min-width: 30px;
+}
+
+.avoid-item p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.final-note {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.final-note h2 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.final-note p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .attire-guide {
+    grid-template-columns: 1fr;
+  }
+  
+  .color-palette {
+    gap: 1rem;
+  }
+  
+  .color-swatch {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .avoid-list {
+    grid-template-columns: 1fr;
+  }
+}
