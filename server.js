@@ -37,9 +37,41 @@ const transporter = nodemailer.createTransport({
 // Initialize database connection
 initializeDatabase();
 
+// Test endpoint
+app.get('/api/test', (req, res) => {
+  console.log('🧪 Test endpoint called');
+  res.json({ 
+    success: true, 
+    message: 'Test endpoint working',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Simple RSVP test endpoint (no database, no email)
+app.post('/api/rsvp-test', (req, res) => {
+  console.log('🧪 RSVP test endpoint called with:', req.body);
+  res.json({ 
+    success: true, 
+    message: 'RSVP test successful - no database or email used',
+    data: req.body,
+    timestamp: new Date().toISOString()
+  });
+});
+
 // RSVP endpoint
 app.post('/api/rsvp', async (req, res) => {
   console.log('📝 RSVP submission received:', req.body);
+  
+  // Set a timeout for the entire request
+  req.setTimeout(30000, () => {
+    console.log('❌ RSVP request timeout');
+    if (!res.headersSent) {
+      res.status(408).json({ 
+        success: false, 
+        message: 'Request timeout. Please try again.' 
+      });
+    }
+  });
   
   try {
     const {
@@ -69,15 +101,29 @@ app.post('/api/rsvp', async (req, res) => {
 
     // Create RSVP entry in database
     console.log('💾 Creating RSVP in database...');
-    const result = await rsvpModel.create({
-      fullName,
-      email,
-      attending,
-      numberOfGuests,
-      mealPreference,
-      dietaryRestrictions,
-      message
-    });
+    let result;
+    try {
+      result = await Promise.race([
+        rsvpModel.create({
+          fullName,
+          email,
+          attending,
+          numberOfGuests,
+          mealPreference,
+          dietaryRestrictions,
+          message
+        }),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Database timeout')), 10000)
+        )
+      ]);
+    } catch (dbError) {
+      console.error('❌ Database error:', dbError);
+      return res.status(500).json({ 
+        success: false, 
+        message: 'Database error. Please try again.' 
+      });
+    }
     
     const row = result.rows[0];
     console.log('✅ RSVP created in database:', row);
@@ -94,42 +140,58 @@ app.post('/api/rsvp', async (req, res) => {
       submittedAt: row.submitted_at
     };
 
-    // Send confirmation email to the couple (with error handling)
+    // Send confirmation email to the couple (with error handling and timeout)
     try {
-      await sendRSVPNotification(rsvp);
+      await Promise.race([
+        sendRSVPNotification(rsvp),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Email timeout')), 5000)
+        )
+      ]);
       console.log('✅ RSVP notification email sent to couple');
     } catch (emailError) {
       console.error('⚠️ Failed to send notification email:', emailError.message);
+      // Continue even if email fails
     }
 
-    // Send confirmation email to guest (only if email provided, with error handling)
+    // Send confirmation email to guest (only if email provided, with error handling and timeout)
     if (rsvp.email) {
       try {
-        await sendGuestConfirmation(rsvp);
+        await Promise.race([
+          sendGuestConfirmation(rsvp),
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Guest email timeout')), 5000)
+          )
+        ]);
         console.log('✅ Confirmation email sent to guest');
       } catch (emailError) {
         console.error('⚠️ Failed to send confirmation email:', emailError.message);
+        // Continue even if email fails
       }
     }
 
     console.log('🎉 RSVP completed successfully, sending response...');
-    res.json({
-      success: true,
-      message: 'RSVP submitted successfully!',
-      rsvp: {
-        fullName: rsvp.fullName,
-        attending: rsvp.attending,
-        submittedAt: rsvp.submittedAt
-      }
-    });
+    if (!res.headersSent) {
+      res.json({
+        success: true,
+        message: 'RSVP submitted successfully!',
+        rsvp: {
+          fullName: rsvp.fullName,
+          attending: rsvp.attending,
+          submittedAt: rsvp.submittedAt
+        }
+      });
+    }
 
   } catch (error) {
     console.error('❌ RSVP submission error:', error);
     console.error('❌ Error stack:', error.stack);
-    res.status(500).json({ 
-      success: false, 
-      message: 'Error submitting RSVP. Please try again.' 
-    });
+    if (!res.headersSent) {
+      res.status(500).json({ 
+        success: false, 
+        message: 'Error submitting RSVP. Please try again.' 
+      });
+    }
   }
 });
 
