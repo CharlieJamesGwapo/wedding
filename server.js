@@ -39,6 +39,8 @@ initializeDatabase();
 
 // RSVP endpoint
 app.post('/api/rsvp', async (req, res) => {
+  console.log('📝 RSVP submission received:', req.body);
+  
   try {
     const {
       fullName,
@@ -66,6 +68,7 @@ app.post('/api/rsvp', async (req, res) => {
     }
 
     // Create RSVP entry in database
+    console.log('💾 Creating RSVP in database...');
     const result = await rsvpModel.create({
       fullName,
       email,
@@ -77,6 +80,7 @@ app.post('/api/rsvp', async (req, res) => {
     });
     
     const row = result.rows[0];
+    console.log('✅ RSVP created in database:', row);
 
     // Map snake_case DB columns to camelCase for use in email functions
     const rsvp = {
@@ -108,6 +112,7 @@ app.post('/api/rsvp', async (req, res) => {
       }
     }
 
+    console.log('🎉 RSVP completed successfully, sending response...');
     res.json({
       success: true,
       message: 'RSVP submitted successfully!',
@@ -119,7 +124,8 @@ app.post('/api/rsvp', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('RSVP submission error:', error);
+    console.error('❌ RSVP submission error:', error);
+    console.error('❌ Error stack:', error.stack);
     res.status(500).json({ 
       success: false, 
       message: 'Error submitting RSVP. Please try again.' 

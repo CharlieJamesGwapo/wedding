@@ -80,6 +80,17 @@ const RSVP = () => {
         body: JSON.stringify(formData)
       });
       
+      // Check if response is ok before parsing JSON
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      // Check if response has content before parsing JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Server returned non-JSON response');
+      }
+      
       const result = await response.json();
       
       if (result.success) {
@@ -91,7 +102,7 @@ const RSVP = () => {
     } catch (error) {
       console.error('Error submitting RSVP:', error);
       setIsSubmitting(false);
-      alert('There was an error submitting your RSVP. Please try again.');
+      alert(`There was an error submitting your RSVP: ${error.message}. Please try again.`);
     }
   };
 
