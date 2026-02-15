@@ -10,10 +10,11 @@ import Schedule from './pages/Schedule';
 import RSVP from './pages/RSVP';
 import DressCode from './pages/DressCode';
 import Gallery from './pages/Gallery';
-import FAQ from './pages/FAQ';
-import Contact from './pages/Contact';
 import Guestbook from './pages/Guestbook';
 import PhotoShare from './pages/PhotoShare';
+import OurStory from './pages/OurStory';
+import FAQ from './pages/FAQ';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -28,10 +29,11 @@ function App() {
           <Route path="/rsvp" element={<RSVP />} />
           <Route path="/dress-code" element={<DressCode />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/guestbook" element={<Guestbook />} />
           <Route path="/photo-share" element={<PhotoShare />} />
+          <Route path="/our-story" element={<OurStory />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
       </div>

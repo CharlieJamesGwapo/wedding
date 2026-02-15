@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './Contact.css';
 
 const Contact = () => {
+  useScrollAnimation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -96,7 +98,7 @@ const Contact = () => {
 
       <section className="contact-content section">
         <div className="container">
-          <div className="contact-intro">
+          <div className="contact-intro" data-animate="fade-up">
             <h2>Get in Touch</h2>
             <p>
               Whether you have questions about the wedding, need travel information, 
@@ -105,7 +107,7 @@ const Contact = () => {
           </div>
 
           <div className="contact-grid">
-            <div className="contact-info">
+            <div className="contact-info" data-animate="fade-left">
               <h3>Ways to Reach Us</h3>
               
               <div className="contact-methods">
@@ -113,7 +115,7 @@ const Contact = () => {
                   <div className="method-icon">📧</div>
                   <div className="method-details">
                     <h4>Email</h4>
-                    <p>wedding@shayneanddr.com</p>
+                    <p>wedding@shayneandmark.com</p>
                     <span className="method-note">Best for detailed questions</span>
                   </div>
                 </div>
@@ -160,7 +162,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="contact-form-section">
+            <div className="contact-form-section" data-animate="fade-right">
               <h3>Send Us a Message</h3>
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-group">
@@ -223,7 +225,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="social-section">
+          <div className="social-section" data-animate="fade-up">
             <h3>Follow Our Journey</h3>
             <p>
               While we're keeping most wedding details private here, you can follow our 

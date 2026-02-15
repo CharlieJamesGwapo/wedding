@@ -279,7 +279,7 @@
   text-shadow: 0 0 20px rgba(212, 165, 116, 0.5);
 }
 
-/* Scroll Animations */
+/* Scroll Animations (legacy) */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -289,6 +289,88 @@
 .scroll-reveal.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ===== GLOBAL SCROLL ANIMATIONS ===== */
+/* data-animate="fade-up" */
+[data-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate="fade-up"].scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* data-animate="fade-down" */
+[data-animate="fade-down"] {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate="fade-down"].scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* data-animate="fade-left" */
+[data-animate="fade-left"] {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate="fade-left"].scroll-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* data-animate="fade-right" */
+[data-animate="fade-right"] {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate="fade-right"].scroll-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* data-animate="scale-in" */
+[data-animate="scale-in"] {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate="scale-in"].scroll-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* data-animate="fade-in" */
+[data-animate="fade-in"] {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate="fade-in"].scroll-visible {
+  opacity: 1;
+}
+
+/* data-animate="zoom-in" */
+[data-animate="zoom-in"] {
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-animate="zoom-in"].scroll-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 
 /* Responsive Animations */

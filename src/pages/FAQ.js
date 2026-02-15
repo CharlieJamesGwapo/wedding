@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './FAQ.css';
 
 const FAQ = () => {
   const [activeItem, setActiveItem] = useState(null);
 
+  useScrollAnimation();
+
   const faqItems = [
     {
       question: "Can I bring a plus one?",
-      answer: "Your invitation will indicate if you have a plus one. Due to venue capacity, we're limited to the number of guests we can accommodate. Please check your invitation or contact us if you're unsure."
+      answer: "Due to limited space, we can only accommodate guests named on the invitation."
     },
     {
       question: "Are children welcome?",
-      answer: "We love children, but this will be an adults-only celebration to allow our guests to relax and enjoy the evening. We hope you understand and look forward to celebrating with you!"
+      answer: "As much as we love your little ones, we are only able to accommodate children who are part of the wedding or those specifically invited."
     },
     {
       question: "What time should I arrive?",
-      answer: "Guests should arrive by 3:30 PM for the 4:00 PM ceremony. This will give you time to find parking, get settled, and enjoy the welcome drinks before the ceremony begins."
+      answer: "Please arrive by 8:30 AM for the 9:00 AM ceremony."
     },
     {
       question: "Is parking available?",
-      answer: "Yes, there is ample free parking available on-site at Carmen Hotel. Our parking attendants will help direct you to the available spaces."
+      answer: "Limited parking is available at the church parking area. Additional parking may be found at nearby establishments. Carpooling is highly recommended."
     },
     {
       question: "What is the weather like in Cagayan de Oro in February?",
@@ -39,15 +42,15 @@ const FAQ = () => {
     },
     {
       question: "When should I RSVP by?",
-      answer: "Please RSVP by January 14, 2026. This helps us finalize catering and seating arrangements. You can RSVP through our website or return the RSVP card included with your invitation."
+      answer: "Please confirm by sending your complete name."
     },
     {
       question: "What gifts are appropriate?",
-      answer: "Your presence is the greatest gift! If you wish to honor us with a gift, we have registries available. Please see our Registry page for more information."
+      answer: "Your presence and prayers are all that we request, but if you desire to give nonetheless, a monetary gift for our future is a delightful blessing."
     },
     {
       question: "Is there a dress code?",
-      answer: "Yes, we suggest formal garden attire. Think elegant cocktail dresses for ladies and suits or sport coats for gentlemen. Please see our Dress Code page for detailed recommendations."
+      answer: "Formal attire in shades of gray. No jeans & no white color. Principal sponsors should wear Barong Tagalog/Long Sleeve and Long Gown/Filipiniana in neutral colors."
     },
     {
       question: "Will there be an open bar?",
@@ -70,21 +73,23 @@ const FAQ = () => {
 
       <section className="faq-content section">
         <div className="container">
-          <div className="faq-intro">
+          <div className="faq-intro" data-animate="fade-up">
             <h2>We're Here to Help</h2>
             <p>
-              We know you have questions about our special day. Here are answers to some 
-              of the most common questions we receive. If you don't see your question here, 
+              We know you have questions about our special day. Here are answers to some
+              of the most common questions we receive. If you don't see your question here,
               please don't hesitate to reach out to us!
             </p>
           </div>
 
           <div className="faq-list">
             {faqItems.map((item, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`faq-item ${activeItem === index ? 'active' : ''}`}
                 onClick={() => toggleItem(index)}
+                data-animate="fade-up"
+                data-delay={Math.min(index * 0.06, 0.5)}
               >
                 <div className="faq-question">
                   <h3>{item.question}</h3>
@@ -97,28 +102,28 @@ const FAQ = () => {
             ))}
           </div>
 
-          <div className="contact-section">
+          <div className="contact-section" data-animate="fade-up">
             <h2>Still Have Questions?</h2>
             <p>
-              If you couldn't find the answer you're looking for, we'd be happy to help! 
+              If you couldn't find the answer you're looking for, we'd be happy to help!
               Feel free to reach out to us directly.
             </p>
             <div className="contact-options">
-              <div className="contact-option">
+              <div className="contact-option" data-animate="fade-up" data-delay="0.1">
                 <span className="contact-icon">📧</span>
                 <div>
                   <h3>Email Us</h3>
                   <p>wedding@shayneandmark.com</p>
                 </div>
               </div>
-              <div className="contact-option">
+              <div className="contact-option" data-animate="fade-up" data-delay="0.2">
                 <span className="contact-icon">📱</span>
                 <div>
                   <h3>Call Us</h3>
                   <p>(555) 123-4567</p>
                 </div>
               </div>
-              <div className="contact-option">
+              <div className="contact-option" data-animate="fade-up" data-delay="0.3">
                 <span className="contact-icon">💬</span>
                 <div>
                   <h3>Contact Form</h3>

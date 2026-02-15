@@ -1,7 +1,10 @@
 import React from 'react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './DressCode.css';
 
 const DressCode = () => {
+  useScrollAnimation();
+
   const colorPalette = [
     { name: 'Sage Green', hex: '#87A96B' },
     { name: 'Champagne', hex: '#F7E7CE' },
@@ -22,34 +25,34 @@ const DressCode = () => {
 
       <section className="dress-code-content section">
         <div className="container">
-          <div className="dress-code-intro">
+          <div className="dress-code-intro" data-animate="fade-up">
             <h2>What to Wear</h2>
             <p>
-              We want our guests to feel comfortable and elegant while celebrating with us in 
-              the beautiful Cagayan de Oro. Our dress code is formal garden attire - 
+              We want our guests to feel comfortable and elegant while celebrating with us in
+              the beautiful Cagayan de Oro. Our dress code is formal garden attire -
               think sophisticated yet comfortable for an outdoor celebration.
             </p>
           </div>
 
           <div className="attire-guide">
-            <div className="attire-section">
+            <div className="attire-section" data-animate="fade-left">
               <h3>For the Ladies</h3>
               <div className="attire-recommendations">
-                <div className="attire-item">
+                <div className="attire-item" data-animate="fade-up" data-delay="0.1">
                   <span className="attire-icon">👗</span>
                   <div>
                     <h4>Cocktail Dresses</h4>
                     <p>Long or short dresses in elegant fabrics</p>
                   </div>
                 </div>
-                <div className="attire-item">
+                <div className="attire-item" data-animate="fade-up" data-delay="0.2">
                   <span className="attire-icon">👠</span>
                   <div>
                     <h4>Heels or Wedges</h4>
                     <p>Consider block heels for grass areas</p>
                   </div>
                 </div>
-                <div className="attire-item">
+                <div className="attire-item" data-animate="fade-up" data-delay="0.3">
                   <span className="attire-icon">🧥</span>
                   <div>
                     <h4>Light Wraps</h4>
@@ -59,24 +62,24 @@ const DressCode = () => {
               </div>
             </div>
 
-            <div className="attire-section">
+            <div className="attire-section" data-animate="fade-right">
               <h3>For the Gentlemen</h3>
               <div className="attire-recommendations">
-                <div className="attire-item">
+                <div className="attire-item" data-animate="fade-up" data-delay="0.1">
                   <span className="attire-icon">🤵</span>
                   <div>
                     <h4>Suits or Sport Coats</h4>
                     <p>Light colors work beautifully for outdoor settings</p>
                   </div>
                 </div>
-                <div className="attire-item">
+                <div className="attire-item" data-animate="fade-up" data-delay="0.2">
                   <span className="attire-icon">👔</span>
                   <div>
                     <h4>Dress Shirts</h4>
                     <p>Ties optional but welcome</p>
                   </div>
                 </div>
-                <div className="attire-item">
+                <div className="attire-item" data-animate="fade-up" data-delay="0.3">
                   <span className="attire-icon">👞</span>
                   <div>
                     <h4>Dress Shoes</h4>
@@ -87,16 +90,16 @@ const DressCode = () => {
             </div>
           </div>
 
-          <div className="color-palette-section">
+          <div className="color-palette-section" data-animate="fade-up">
             <h2>Suggested Color Palette</h2>
             <p className="palette-description">
               While not required, these colors complement our wedding theme and our tropical wedding setting:
             </p>
             <div className="color-palette">
               {colorPalette.map((color, index) => (
-                <div key={index} className="color-item">
-                  <div 
-                    className="color-swatch" 
+                <div key={index} className="color-item" data-animate="scale-in" data-delay={index * 0.1}>
+                  <div
+                    className="color-swatch"
                     style={{ backgroundColor: color.hex }}
                   ></div>
                   <span className="color-name">{color.name}</span>
@@ -106,73 +109,73 @@ const DressCode = () => {
           </div>
 
           <div className="practical-tips">
-            <h2>Practical Considerations</h2>
+            <h2 data-animate="fade-up">Practical Considerations</h2>
             <div className="tips-grid">
-              <div className="tip-card">
+              <div className="tip-card" data-animate="fade-up" data-delay="0.1">
                 <div className="tip-icon">🌤️</div>
                 <h3>Weather</h3>
                 <p>
-                  February in Cagayan de Oro is warm and tropical (82-90°F) with occasional rain showers. 
+                  February in Cagayan de Oro is warm and tropical (82-90°F) with occasional rain showers.
                   Layers are recommended for comfort throughout the day.
                 </p>
               </div>
-              
-              <div className="tip-card">
+
+              <div className="tip-card" data-animate="fade-up" data-delay="0.2">
                 <div className="tip-icon">🌿</div>
                 <h3>Outdoor Venue</h3>
                 <p>
-                  Both ceremony and cocktail hour will be outdoors on grass. 
+                  Both ceremony and cocktail hour will be outdoors on grass.
                   Consider heel type and avoid stilettos that might sink into soft ground.
                 </p>
               </div>
-              
-              <div className="tip-card">
+
+              <div className="tip-card" data-animate="fade-up" data-delay="0.3">
                 <div className="tip-icon">📸</div>
                 <h3>Photos</h3>
                 <p>
-                  Solid colors and elegant patterns photograph beautifully. 
+                  Solid colors and elegant patterns photograph beautifully.
                   Avoid large logos or very casual attire.
                 </p>
               </div>
-              
-              <div className="tip-card">
+
+              <div className="tip-card" data-animate="fade-up" data-delay="0.4">
                 <div className="tip-icon">🍷</div>
                 <h3>Comfort</h3>
                 <p>
-                  You'll be celebrating with us for several hours. 
+                  You'll be celebrating with us for several hours.
                   Choose outfits that allow you to dance and enjoy the evening comfortably.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="what-to-avoid">
+          <div className="what-to-avoid" data-animate="fade-up">
             <h2>What to Avoid</h2>
             <div className="avoid-list">
-              <div className="avoid-item">
+              <div className="avoid-item" data-animate="fade-left" data-delay="0.1">
                 <span className="avoid-icon">❌</span>
                 <p>Denim, shorts, or t-shirts</p>
               </div>
-              <div className="avoid-item">
+              <div className="avoid-item" data-animate="fade-left" data-delay="0.15">
                 <span className="avoid-icon">❌</span>
                 <p>Athletic wear or sneakers</p>
               </div>
-              <div className="avoid-item">
+              <div className="avoid-item" data-animate="fade-left" data-delay="0.2">
                 <span className="avoid-icon">❌</span>
                 <p>Very casual beachwear (flip-flops, tank tops)</p>
               </div>
-              <div className="avoid-item">
+              <div className="avoid-item" data-animate="fade-left" data-delay="0.25">
                 <span className="avoid-icon">❌</span>
                 <p>White or ivory colors (reserved for the bride)</p>
               </div>
             </div>
           </div>
 
-          <div className="final-note">
+          <div className="final-note" data-animate="scale-in">
             <h2>Most Importantly...</h2>
             <p>
-              What matters most to us is having you there to celebrate our special day. 
-              Please wear what makes you feel comfortable and confident. 
+              What matters most to us is having you there to celebrate our special day.
+              Please wear what makes you feel comfortable and confident.
               We can't wait to see you dressed in your best to share in our joy!
             </p>
           </div>

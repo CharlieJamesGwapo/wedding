@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './RSVP.css';
 
 const RSVP = () => {
+  useScrollAnimation();
   const [formData, setFormData] = useState({
     fullName: '',
+    email: '',
     attending: '',
     numberOfGuests: '',
     mealPreference: '',
@@ -95,6 +98,7 @@ const RSVP = () => {
   const resetForm = () => {
     setFormData({
       fullName: '',
+      email: '',
       attending: '',
       numberOfGuests: '',
       mealPreference: '',
@@ -177,7 +181,7 @@ const RSVP = () => {
       <section className="rsvp-form section">
         <div className="container">
           <div className="form-container">
-            <div className="form-intro">
+            <div className="form-intro" data-animate="fade-up">
               <h2>We Can't Wait to Celebrate With You!</h2>
               <p>
                 Your presence at our wedding would mean the world to us. 
@@ -193,7 +197,7 @@ const RSVP = () => {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="wedding-form">
+            <form onSubmit={handleSubmit} className="wedding-form" data-animate="fade-up" data-delay="0.2">
               <div className="form-group">
                 <label htmlFor="fullName">Full Name *</label>
                 <input
@@ -206,6 +210,21 @@ const RSVP = () => {
                   placeholder="Enter your full name"
                 />
                 {errors.fullName && <span className="error-message">{errors.fullName}</span>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="email">Email Address *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={errors.email ? 'error' : ''}
+                  placeholder="Enter your email address"
+                  required
+                />
+                {errors.email && <span className="error-message">{errors.email}</span>}
               </div>
 
               <div className="form-group">

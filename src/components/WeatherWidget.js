@@ -55,7 +55,7 @@ const WeatherWidget = () => {
     <div className="weather-widget">
       <div className="weather-header">
         <h3>Wedding Day Weather</h3>
-        <span className="wedding-date">Feb 14, 2026</span>
+        <span className="wedding-date">Feb 25, 2026</span>
       </div>
       
       <div className="weather-main">

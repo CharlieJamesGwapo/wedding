@@ -1,38 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './PhotoShare.css';
 
 const PhotoShare = () => {
-  const [photos, setPhotos] = useState(() => {
-    // Load photos from localStorage on initial render
-    const savedPhotos = localStorage.getItem('weddingPhotos');
-    if (savedPhotos) {
-      try {
-        return JSON.parse(savedPhotos);
-      } catch (error) {
-        console.error('Error loading photos from localStorage:', error);
-      }
-    }
-    
-    // Default photos if nothing is saved
-    return [
-      {
-        id: 1,
-        url: 'https://images.unsplash.com/photo-1519741497675-93ad6298aa8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-        uploader: 'Sarah Johnson',
-        caption: 'Beautiful sunset at the venue!',
-        timestamp: '2024-01-15 18:30',
-        likes: 24
-      },
-      {
-        id: 2,
-        url: 'https://images.unsplash.com/photo-1519225471986-9bb232d97d6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-        uploader: 'David Thompson',
-        caption: 'The couple looks amazing together!',
-        timestamp: '2024-01-16 14:22',
-        likes: 18
-      }
-    ];
-  });
+  useScrollAnimation();
+  const [photos, setPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [caption, setCaption] = useState('');
@@ -44,10 +17,58 @@ const PhotoShare = () => {
   const fileInputRef = useRef(null);
   const cameraInputRef = useRef(null);
 
-  // Save photos to localStorage whenever they change
+  // Fetch photos from database on component mount
   useEffect(() => {
-    localStorage.setItem('weddingPhotos', JSON.stringify(photos));
-  }, [photos]);
+    fetchPhotos();
+  }, []);
+
+  const fetchPhotos = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/photos');
+      const result = await response.json();
+      
+      if (result.success) {
+        setPhotos(result.photos);
+      } else {
+        console.error('Error fetching photos:', result.message);
+        // Set default photos if API fails
+        setPhotos([
+          {
+            id: 1,
+            url: 'https://images.unsplash.com/photo-1519741497675-93ad6298aa8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+            uploader: 'Sarah Johnson',
+            caption: 'Beautiful sunset at the venue!',
+            timestamp: '2024-01-15 18:30',
+            likes: 24
+          },
+          {
+            id: 2,
+            url: 'https://images.unsplash.com/photo-1519225471986-9bb232d97d6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+            uploader: 'David Thompson',
+            caption: 'The couple looks amazing together!',
+            timestamp: '2024-01-16 14:22',
+            likes: 18
+          }
+        ]);
+      }
+    } catch (error) {
+      console.error('Error fetching photos:', error);
+      // Set default photos if fetch fails
+      setPhotos([
+        {
+          id: 1,
+          url: 'https://images.unsplash.com/photo-1519741497675-93ad6298aa8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+          uploader: 'Sarah Johnson',
+          caption: 'Beautiful sunset at the venue!',
+          timestamp: '2024-01-15 18:30',
+          likes: 24
+        }
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
@@ -139,36 +160,50 @@ const PhotoShare = () => {
     try {
       // Simulate upload progress
       for (let i = 0; i <= 100; i += 10) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 50));
         setUploadProgress(i);
       }
       
-      // Create a preview URL and convert to base64 for storage
-      
-      // Convert file to base64 for persistent storage
+      // Convert file to base64 for storage
       const reader = new FileReader();
-      reader.onloadend = () => {
+      reader.onloadend = async () => {
         const base64String = reader.result;
         
-        const newPhoto = {
-          id: Date.now(),
-          url: base64String, // Store base64 instead of blob URL
-          uploader: uploaderName.trim(),
-          caption: caption.trim() || 'Beautiful moment!',
-          timestamp: new Date().toLocaleString(),
-          likes: 0
-        };
+        // Send photo data to database
+        const response = await fetch('/api/photos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            uploaderName: uploaderName.trim(),
+            caption: caption.trim() || 'Beautiful moment!',
+            imageUrl: base64String,
+            imageData: base64String,
+            fileSize: selectedFile.size,
+            fileType: selectedFile.type
+          })
+        });
         
-        setPhotos(prev => [newPhoto, ...prev]);
-        setSelectedFile(null);
-        setCaption('');
-        setUploaderName('');
-        setShowUploadModal(false);
-        setUploadProgress(0);
-        setUploading(false);
+        const result = await response.json();
         
-        // Show success message
-        alert('Photo uploaded successfully! Thank you for sharing your memories.');
+        if (result.success) {
+          // Refresh photos list
+          await fetchPhotos();
+          
+          // Reset form
+          setSelectedFile(null);
+          setCaption('');
+          setUploaderName('');
+          setShowUploadModal(false);
+          setUploadProgress(0);
+          setUploading(false);
+          
+          // Show success message
+          alert('Photo uploaded successfully! Thank you for sharing your memories.');
+        } else {
+          throw new Error(result.message || 'Upload failed');
+        }
       };
       
       reader.readAsDataURL(selectedFile);
@@ -180,12 +215,42 @@ const PhotoShare = () => {
     }
   };
 
-  const handleLike = (photoId) => {
-    setPhotos(prev => prev.map(photo => 
-      photo.id === photoId 
-        ? { ...photo, likes: photo.likes + 1 }
-        : photo
-    ));
+  const handleLike = async (photoId) => {
+    try {
+      const response = await fetch(`/api/photos/${photoId}/like`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        // Update the local state with new like count
+        setPhotos(prev => prev.map(photo => 
+          photo.id === photoId 
+            ? { ...photo, likes: result.likes }
+            : photo
+        ));
+      } else {
+        console.error('Error liking photo:', result.message);
+        // Fallback to local update if API fails
+        setPhotos(prev => prev.map(photo => 
+          photo.id === photoId 
+            ? { ...photo, likes: photo.likes + 1 }
+            : photo
+        ));
+      }
+    } catch (error) {
+      console.error('Error liking photo:', error);
+      // Fallback to local update if API fails
+      setPhotos(prev => prev.map(photo => 
+        photo.id === photoId 
+          ? { ...photo, likes: photo.likes + 1 }
+          : photo
+      ));
+    }
   };
 
   const openUploadModal = () => {
@@ -213,7 +278,7 @@ const PhotoShare = () => {
 
       <section className="photo-content section">
         <div className="container">
-          <div className="photo-intro">
+          <div className="photo-intro" data-animate="fade-up">
             <h2>Our Wedding Gallery</h2>
             <p>
               Capture and share the beautiful moments from our wedding celebration. 
@@ -225,36 +290,42 @@ const PhotoShare = () => {
             </button>
           </div>
 
-          <div className="photo-grid">
-            {photos.map((photo) => (
-              <div key={photo.id} className="photo-card">
-                <div className="photo-container">
-                  <img src={photo.url} alt={photo.caption} />
-                  <div className="photo-overlay">
-                    <button 
-                      className="like-btn"
-                      onClick={() => handleLike(photo.id)}
-                    >
-                      ❤️ {photo.likes}
-                    </button>
-                  </div>
-                </div>
-                <div className="photo-info">
-                  <div className="photo-header">
-                    <span className="uploader">{photo.uploader}</span>
-                    <span className="timestamp">{photo.timestamp}</span>
-                  </div>
-                  <p className="caption">{photo.caption}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {photos.length === 0 && (
+          {loading ? (
+            <div className="loading-photos">
+              <div className="loading-spinner">📸</div>
+              <h3>Loading Photos...</h3>
+              <p>Gathering beautiful memories from our wedding</p>
+            </div>
+          ) : photos.length === 0 ? (
             <div className="no-photos">
               <div className="no-photos-icon">📷</div>
               <h3>No Photos Yet</h3>
               <p>Be the first to share memories from our special day!</p>
+            </div>
+          ) : (
+            <div className="photo-grid">
+              {photos.map((photo) => (
+                <div key={photo.id} className="photo-card" data-animate="zoom-in">
+                  <div className="photo-container">
+                    <img src={photo.url} alt={photo.caption} />
+                    <div className="photo-overlay">
+                      <button 
+                        className="like-btn"
+                        onClick={() => handleLike(photo.id)}
+                      >
+                        ❤️ {photo.likes}
+                      </button>
+                    </div>
+                  </div>
+                  <div className="photo-info">
+                    <div className="photo-header">
+                      <span className="uploader">{photo.uploader}</span>
+                      <span className="timestamp">{photo.timestamp}</span>
+                    </div>
+                    <p className="caption">{photo.caption}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -307,33 +378,32 @@ const PhotoShare = () => {
                     </button>
                   </div>
                 ) : (
-                  <div 
+                  <div
                     className={`drop-zone ${dragActive ? 'drag-active' : ''}`}
+                    onClick={openFileSelector}
                     onDragEnter={handleDrag}
                     onDragLeave={handleDrag}
                     onDragOver={handleDrag}
                     onDrop={handleDrop}
                   >
-                    <div className="drop-zone-content">
-                      <span className="upload-icon">📸</span>
-                      <h4>Click to upload or drag and drop</h4>
-                      <p>PNG, JPG, GIF, WebP up to 10MB</p>
-                      <div className="upload-buttons">
-                        <button 
-                          type="button" 
-                          className="btn btn-outline btn-sm"
-                          onClick={openFileSelector}
-                        >
-                          📁 Choose File
-                        </button>
-                        <button 
-                          type="button" 
-                          className="btn btn-outline btn-sm"
-                          onClick={openCamera}
-                        >
-                          📷 Take Photo
-                        </button>
-                      </div>
+                    <span className="upload-icon">📸</span>
+                    <h4>Click to upload or drag and drop</h4>
+                    <p>PNG, JPG, GIF, WebP up to 10MB</p>
+                    <div className="upload-buttons">
+                      <button
+                        type="button"
+                        className="btn btn-outline btn-sm"
+                        onClick={(e) => { e.stopPropagation(); openFileSelector(); }}
+                      >
+                        📁 Choose File
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-outline btn-sm"
+                        onClick={(e) => { e.stopPropagation(); openCamera(); }}
+                      >
+                        📷 Take Photo
+                      </button>
                     </div>
                   </div>
                 )}

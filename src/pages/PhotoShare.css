@@ -270,7 +270,12 @@
 }
 
 .drop-zone-content {
-  pointer-events: none;
+  pointer-events: auto;
+}
+
+.upload-buttons {
+  position: relative;
+  z-index: 10;
 }
 
 .upload-icon {

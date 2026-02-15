@@ -12,7 +12,7 @@ const AnimatedCountdown = () => {
 
   useEffect(() => {
     setMounted(true);
-    const weddingDate = new Date('February 14, 2026 16:00:00').getTime();
+    const weddingDate = new Date('February 25, 2026 09:00:00').getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();

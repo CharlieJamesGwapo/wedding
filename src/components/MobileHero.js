@@ -41,9 +41,9 @@ const MobileHero = () => {
       <div className="hero-content">
         <div className="hero-text">
           <h1 className="hero-title">
-            <span className="title-line">Shayne Jayo</span>
+            <span className="title-line">Shayne</span>
             <span className="title-ampersand">&</span>
-            <span className="title-line">DR</span>
+            <span className="title-line">Mark</span>
           </h1>
           
           <h2 className="hero-subtitle">Are Getting Married</h2>
