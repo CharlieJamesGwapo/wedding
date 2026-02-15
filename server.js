@@ -1,37 +1,48 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const { initializeDatabase, rsvpModel, photoModel } = require('./database/db');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
 // Serve static files from React app
 app.use(express.static(path.join(__dirname, 'build')));
+
+// Cloudinary configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // Email configuration
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER || 'wedding@shayneanddr.com',
+    user: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
     pass: process.env.EMAIL_PASS || 'your-app-password'
   }
 });
 
-// Store RSVPs (in production, use a database)
-let rsvps = [];
+// Initialize database connection
+initializeDatabase();
 
 // RSVP endpoint
 app.post('/api/rsvp', async (req, res) => {
   try {
     const {
       fullName,
+      email,
       attending,
       numberOfGuests,
       mealPreference,
@@ -54,29 +65,51 @@ app.post('/api/rsvp', async (req, res) => {
       });
     }
 
-    // Create RSVP entry
-    const rsvp = {
-      id: Date.now(),
+    // Create RSVP entry in database
+    const result = await rsvpModel.create({
       fullName,
+      email,
       attending,
-      numberOfGuests: attending === 'yes' ? numberOfGuests : 0,
-      mealPreference: attending === 'yes' ? mealPreference : 'N/A',
-      dietaryRestrictions: dietaryRestrictions || 'None',
-      message: message || '',
-      submittedAt: new Date().toISOString()
+      numberOfGuests,
+      mealPreference,
+      dietaryRestrictions,
+      message
+    });
+    
+    const row = result.rows[0];
+
+    // Map snake_case DB columns to camelCase for use in email functions
+    const rsvp = {
+      fullName: row.full_name,
+      email: row.email,
+      attending: row.attending,
+      numberOfGuests: row.number_of_guests,
+      mealPreference: row.meal_preference,
+      dietaryRestrictions: row.dietary_restrictions,
+      message: row.message,
+      submittedAt: row.submitted_at
     };
 
-    // Store RSVP
-    rsvps.push(rsvp);
+    // Send confirmation email to the couple (with error handling)
+    try {
+      await sendRSVPNotification(rsvp);
+      console.log('✅ RSVP notification email sent to couple');
+    } catch (emailError) {
+      console.error('⚠️ Failed to send notification email:', emailError.message);
+    }
 
-    // Send confirmation email to the couple
-    await sendRSVPNotification(rsvp);
+    // Send confirmation email to guest (only if email provided, with error handling)
+    if (rsvp.email) {
+      try {
+        await sendGuestConfirmation(rsvp);
+        console.log('✅ Confirmation email sent to guest');
+      } catch (emailError) {
+        console.error('⚠️ Failed to send confirmation email:', emailError.message);
+      }
+    }
 
-    // Send confirmation email to guest
-    await sendGuestConfirmation(rsvp);
-
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       message: 'RSVP submitted successfully!',
       rsvp: {
         fullName: rsvp.fullName,
@@ -95,11 +128,176 @@ app.post('/api/rsvp', async (req, res) => {
 });
 
 // Get all RSVPs (admin endpoint)
-app.get('/api/rsvps', (req, res) => {
-  res.json({
-    success: true,
-    rsvps: rsvps.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt))
-  });
+app.get('/api/rsvps', async (req, res) => {
+  try {
+    const result = await rsvpModel.getAll();
+    res.json({
+      success: true,
+      rsvps: result.rows
+    });
+  } catch (error) {
+    console.error('Error fetching RSVPs:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching RSVPs'
+    });
+  }
+});
+
+// Get RSVP statistics
+app.get('/api/rsvp-stats', async (req, res) => {
+  try {
+    const result = await rsvpModel.getStats();
+    res.json({
+      success: true,
+      stats: result.rows
+    });
+  } catch (error) {
+    console.error('Error fetching RSVP stats:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching RSVP statistics'
+    });
+  }
+});
+
+// Photo share endpoints
+app.post('/api/photos', async (req, res) => {
+  try {
+    const {
+      uploaderName,
+      caption,
+      imageData,
+      fileType
+    } = req.body;
+
+    // Validate required fields
+    if (!uploaderName || !imageData) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Uploader name and image data are required' 
+      });
+    }
+
+    let imageUrl = null;
+    let fileSize = null;
+
+    // Upload to Cloudinary if image data is provided
+    if (imageData) {
+      try {
+        // Extract base64 data (remove data:image/type;base64, prefix)
+        const base64Data = imageData.replace(/^data:image\/\w+;base64,/, '');
+        
+        const uploadResult = await cloudinary.uploader.upload(
+          `data:image/${fileType || 'jpeg'};base64,${base64Data}`,
+          {
+            folder: 'wedding-photos',
+            resource_type: 'image',
+            allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+            max_file_size: 10485760, // 10MB
+            public_id: `wedding-${Date.now()}-${Math.random().toString(36).substring(7)}`
+          }
+        );
+        
+        imageUrl = uploadResult.secure_url;
+        fileSize = uploadResult.bytes;
+        
+        console.log('✅ Photo uploaded to Cloudinary:', imageUrl);
+      } catch (cloudinaryError) {
+        console.error('❌ Cloudinary upload error:', cloudinaryError);
+        return res.status(500).json({
+          success: false,
+          message: 'Error uploading photo to cloud storage. Please try again.'
+        });
+      }
+    }
+
+    // Create photo entry in database
+    const result = await photoModel.create({
+      uploaderName,
+      caption,
+      imageUrl,
+      imageData: null, // Don't store base64 in DB when using Cloudinary
+      fileSize,
+      fileType
+    });
+    
+    const photo = result.rows[0];
+
+    res.json({ 
+      success: true, 
+      message: 'Photo uploaded successfully!',
+      photo: {
+        id: photo.id,
+        uploaderName: photo.uploader_name,
+        caption: photo.caption,
+        imageUrl: photo.image_url,
+        uploadedAt: photo.uploaded_at
+      }
+    });
+
+  } catch (error) {
+    console.error('Photo upload error:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Error uploading photo. Please try again.' 
+    });
+  }
+});
+
+// Get all photos
+app.get('/api/photos', async (req, res) => {
+  try {
+    const approvedOnly = req.query.approved !== 'false'; // Default to approved only
+    const result = await photoModel.getAll(approvedOnly);
+    
+    // Transform the data to match the frontend expected format
+    const photos = result.rows.map(photo => ({
+      id: photo.id,
+      url: photo.image_url || photo.image_data,
+      uploader: photo.uploader_name,
+      caption: photo.caption || 'Beautiful moment!',
+      timestamp: new Date(photo.uploaded_at).toLocaleString(),
+      likes: photo.likes
+    }));
+
+    res.json({
+      success: true,
+      photos
+    });
+  } catch (error) {
+    console.error('Error fetching photos:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching photos'
+    });
+  }
+});
+
+// Like a photo
+app.post('/api/photos/:id/like', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await photoModel.like(id);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Photo not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      likes: result.rows[0].likes
+    });
+  } catch (error) {
+    console.error('Error liking photo:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error liking photo'
+    });
+  }
 });
 
 // Contact form endpoint
@@ -149,8 +347,8 @@ async function sendRSVPNotification(rsvp) {
   `;
 
   await transporter.sendMail({
-    from: process.env.EMAIL_USER || 'wedding@shayneanddr.com',
-    to: 'wedding@shayneanddr.com',
+    from: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
+    to: process.env.EMAIL_USER,
     subject,
     html: htmlContent
   });
@@ -174,7 +372,7 @@ async function sendGuestConfirmation(rsvp) {
     </ul>
     <p>If you need to make any changes to your RSVP, please contact us directly.</p>
     <p>With love and excitement,</p>
-    <p>Shayne & DR</p>
+    <p>Shayne & Mark</p>
   ` : `
     <h2>RSVP Confirmation - Thank You</h2>
     <p>Dear ${rsvp.fullName},</p>
@@ -182,12 +380,12 @@ async function sendGuestConfirmation(rsvp) {
     ${rsvp.message ? `<p>We received your message: "${rsvp.message}"</p>` : ''}
     <p>We hope to celebrate with you soon!</p>
     <p>With love,</p>
-    <p>Shayne & DR</p>
+    <p>Shayne & Mark</p>
   `;
 
   await transporter.sendMail({
-    from: process.env.EMAIL_USER || 'wedding@shayneanddr.com',
-    to: rsvp.fullName.includes('@') ? rsvp.fullName : 'guest@example.com', // In production, you'd collect email separately
+    from: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
+    to: rsvp.email,
     subject,
     html: htmlContent
   });
@@ -206,12 +404,36 @@ async function sendContactNotification({ name, email, message }) {
   `;
 
   await transporter.sendMail({
-    from: process.env.EMAIL_USER || 'wedding@shayneanddr.com',
-    to: 'wedding@shayneanddr.com',
+    from: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
+    to: process.env.EMAIL_USER,
     subject,
     html: htmlContent
   });
 }
+
+// Admin endpoints
+app.get('/api/admin/stats', async (req, res) => {
+  try {
+    const [rsvpsResult, photosResult, statsResult] = await Promise.all([
+      rsvpModel.getAll(),
+      photoModel.getAll(false), // Get all photos including unapproved
+      rsvpModel.getStats()
+    ]);
+
+    res.json({
+      success: true,
+      rsvps: rsvpsResult.rows,
+      photos: photosResult.rows,
+      stats: statsResult.rows
+    });
+  } catch (error) {
+    console.error('Error fetching admin data:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching admin data'
+    });
+  }
+});
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -231,7 +453,8 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🎉 Wedding website server running on port ${PORT}`);
   console.log(`📧 Email notifications configured`);
-  console.log(`💍 Ready to accept RSVPs!`);
+  console.log(`☁️  Cloudinary photo storage configured`);
+  console.log(`💍 Ready to accept RSVPs and photo uploads!`);
 });
 
 module.exports = app;
