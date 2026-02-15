@@ -1,21 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import './OurStory.css';
 
 const OurStory = () => {
-  const [scrollY, setScrollY] = useState(0);
   const observerRef = useRef();
 
   useScrollAnimation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
