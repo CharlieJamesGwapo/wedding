@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import WeatherWidget from '../components/WeatherWidget';
 import InteractiveMap from '../components/InteractiveMap';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import './WeddingDetails.css';
@@ -160,38 +159,29 @@ const WeddingDetails = () => {
                 The perfect sacred setting for exchanging our wedding vows.
               </p>
 
-              <div className="venue-details-grid">
-                <div className="venue-detail-item" data-animate="fade-up" data-delay="0.1">
-                  <div className="detail-header">
-                    <span className="detail-icon">📍</span>
-                    <h5>Address</h5>
+              <div className="venue-details-cards">
+                <div className="venue-card">
+                  <div className="venue-card-content">
+                    <h4>Address</h4>
+                    <p>J.V. Serina St. Carmen</p>
+                    <p>CDO City</p>
                   </div>
-                  <p className="detail-content">J.V. Serina St. Carmen</p>
-                  <p className="detail-content">CDO City</p>
                 </div>
-                <div className="venue-detail-item" data-animate="fade-up" data-delay="0.2">
-                  <div className="detail-header">
-                    <span className="detail-icon">⏰</span>
-                    <h5>Arrival Time</h5>
+
+                <div className="venue-card">
+                  <div className="venue-card-content">
+                    <h4>Arrival Time</h4>
+                    <p>Please arrive by 8:30 AM</p>
+                    <p>Ceremony begins at 9:00 AM</p>
                   </div>
-                  <p className="detail-content">Please arrive by 8:30 AM</p>
-                  <p className="detail-content">Ceremony begins at 9:00 AM</p>
                 </div>
-                <div className="venue-detail-item" data-animate="fade-up" data-delay="0.3">
-                  <div className="detail-header">
-                    <span className="detail-icon">👔</span>
-                    <h5>Dress Code</h5>
+
+                <div className="venue-card">
+                  <div className="venue-card-content">
+                    <h4>Dress Code</h4>
+                    <p>Semi-formal attire</p>
+                    <p>Please avoid casual wear</p>
                   </div>
-                  <p className="detail-content">Semi-formal attire</p>
-                  <p className="detail-content">Please avoid casual wear</p>
-                </div>
-                <div className="venue-detail-item" data-animate="fade-up" data-delay="0.4">
-                  <div className="detail-header">
-                    <span className="detail-icon">🚗</span>
-                    <h5>Parking</h5>
-                  </div>
-                  <p className="detail-content">Parking available</p>
-                  <p className="detail-content">Carpooling recommended</p>
                 </div>
               </div>
             </div>
@@ -204,42 +194,6 @@ const WeddingDetails = () => {
         </div>
       </section>
 
-      <section className="transportation-section section">
-        <div className="container">
-          <h2 className="section-title" data-animate="fade-up">Transportation & Parking</h2>
-          <div className="transport-options">
-            <div className="transport-item" data-animate="fade-up" data-delay="0.1">
-              <div className="transport-icon">🚗</div>
-              <div>
-                <h4>Parking Information</h4>
-                <p>Limited parking available at the church. Additional parking available at nearby establishments. Carpooling is highly recommended.</p>
-              </div>
-            </div>
-            <div className="transport-item" data-animate="fade-up" data-delay="0.2">
-              <div className="transport-icon">🚌</div>
-              <div>
-                <h4>Shuttle Service</h4>
-                <p>Complimentary shuttle service will be available from Carmen Hotel to the church and back. Schedule details will be provided closer to the date.</p>
-              </div>
-            </div>
-            <div className="transport-item" data-animate="fade-up" data-delay="0.3">
-              <div className="transport-icon">✈️</div>
-              <div>
-                <h4>Airport Transportation</h4>
-                <p>Laguindingan Airport (CGY) is approximately 30 minutes away. Taxi and ride-sharing services are readily available.</p>
-              </div>
-            </div>
-            <div className="transport-item" data-animate="fade-up" data-delay="0.4">
-              <div className="transport-icon">🏨</div>
-              <div>
-                <h4>Hotel Accommodations</h4>
-                <p>Special wedding rates available at Carmen Hotel and partner hotels. Contact us for accommodation assistance.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="attire-section section">
         <div className="container">
           <h2 className="section-title" data-animate="fade-up">Attire</h2>
@@ -247,7 +201,7 @@ const WeddingDetails = () => {
             <div className="attire-group" data-animate="fade-left" data-delay="0.1">
               <div className="attire-card">
                 <div className="attire-header">
-                  <span className="attire-icon">🤵</span>
+                  <span className="attire-icon"></span>
                   <h3>Principal Sponsors</h3>
                 </div>
                 <div className="attire-details">
@@ -260,7 +214,7 @@ const WeddingDetails = () => {
             <div className="attire-group" data-animate="fade-right" data-delay="0.2">
               <div className="attire-card">
                 <div className="attire-header">
-                  <span className="attire-icon">👥</span>
+                  <span className="attire-icon"></span>
                   <h3>Guests</h3>
                 </div>
                 <div className="attire-details">
@@ -279,7 +233,7 @@ const WeddingDetails = () => {
           <div className="gifts-content" data-animate="scale-in" data-delay="0.15">
             <div className="gift-card">
               <div className="gift-header">
-                <span className="gift-icon">🎁</span>
+                <span className="gift-icon"></span>
                 <h3>Your Presence is Our Greatest Gift</h3>
               </div>
               <div className="gift-details">
@@ -297,7 +251,7 @@ const WeddingDetails = () => {
           <div className="notes-grid">
             <div className="note-card" data-animate="fade-left" data-delay="0.1">
               <div className="note-header">
-                <span className="note-icon">👶</span>
+                <span className="note-icon"></span>
                 <h3>Children</h3>
               </div>
               <div className="note-content">
@@ -308,7 +262,7 @@ const WeddingDetails = () => {
 
             <div className="note-card" data-animate="fade-right" data-delay="0.2">
               <div className="note-header">
-                <span className="note-icon">➕</span>
+                <span className="note-icon"></span>
                 <h3>Plus One</h3>
               </div>
               <div className="note-content">
@@ -321,10 +275,6 @@ const WeddingDetails = () => {
         </div>
       </section>
 
-      <section className="weather-section" data-animate="fade-up">
-        <h2 className="section-title">Wedding Day Weather</h2>
-        <WeatherWidget />
-      </section>
     </div>
   );
 };

@@ -4,7 +4,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const path = require('path');
-const cloudinary = require('cloudinary').v2;
 const { initializeDatabase, rsvpModel, photoModel } = require('./database/db');
 
 const app = express();
@@ -12,18 +11,11 @@ const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files from React app
 app.use(express.static(path.join(__dirname, 'build')));
-
-// Cloudinary configuration
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
 
 // Email configuration
 const transporter = nodemailer.createTransport({
@@ -31,48 +23,17 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
     pass: process.env.EMAIL_PASS || 'your-app-password'
-  }
+  },
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000
 });
 
 // Initialize database connection
 initializeDatabase();
 
-// Test endpoint
-app.get('/api/test', (req, res) => {
-  console.log('🧪 Test endpoint called');
-  res.json({ 
-    success: true, 
-    message: 'Test endpoint working',
-    timestamp: new Date().toISOString()
-  });
-});
-
-// Simple RSVP test endpoint (no database, no email)
-app.post('/api/rsvp-test', (req, res) => {
-  console.log('🧪 RSVP test endpoint called with:', req.body);
-  res.json({ 
-    success: true, 
-    message: 'RSVP test successful - no database or email used',
-    data: req.body,
-    timestamp: new Date().toISOString()
-  });
-});
-
 // RSVP endpoint
 app.post('/api/rsvp', async (req, res) => {
-  console.log('📝 RSVP submission received:', req.body);
-  
-  // Set a timeout for the entire request
-  req.setTimeout(30000, () => {
-    console.log('❌ RSVP request timeout');
-    if (!res.headersSent) {
-      res.status(408).json({ 
-        success: false, 
-        message: 'Request timeout. Please try again.' 
-      });
-    }
-  });
-  
   try {
     const {
       fullName,
@@ -100,33 +61,17 @@ app.post('/api/rsvp', async (req, res) => {
     }
 
     // Create RSVP entry in database
-    console.log('💾 Creating RSVP in database...');
-    let result;
-    try {
-      result = await Promise.race([
-        rsvpModel.create({
-          fullName,
-          email,
-          attending,
-          numberOfGuests,
-          mealPreference,
-          dietaryRestrictions,
-          message
-        }),
-        new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Database timeout')), 10000)
-        )
-      ]);
-    } catch (dbError) {
-      console.error('❌ Database error:', dbError);
-      return res.status(500).json({ 
-        success: false, 
-        message: 'Database error. Please try again.' 
-      });
-    }
+    const result = await rsvpModel.create({
+      fullName,
+      email,
+      attending,
+      numberOfGuests,
+      mealPreference,
+      dietaryRestrictions,
+      message
+    });
     
     const row = result.rows[0];
-    console.log('✅ RSVP created in database:', row);
 
     // Map snake_case DB columns to camelCase for use in email functions
     const rsvp = {
@@ -140,58 +85,34 @@ app.post('/api/rsvp', async (req, res) => {
       submittedAt: row.submitted_at
     };
 
-    // Send confirmation email to the couple (with error handling and timeout)
-    try {
-      await Promise.race([
-        sendRSVPNotification(rsvp),
-        new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Email timeout')), 5000)
-        )
-      ]);
-      console.log('✅ RSVP notification email sent to couple');
-    } catch (emailError) {
-      console.error('⚠️ Failed to send notification email:', emailError.message);
-      // Continue even if email fails
-    }
-
-    // Send confirmation email to guest (only if email provided, with error handling and timeout)
-    if (rsvp.email) {
-      try {
-        await Promise.race([
-          sendGuestConfirmation(rsvp),
-          new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('Guest email timeout')), 5000)
-          )
-        ]);
-        console.log('✅ Confirmation email sent to guest');
-      } catch (emailError) {
-        console.error('⚠️ Failed to send confirmation email:', emailError.message);
-        // Continue even if email fails
+    // Send response immediately - don't block on email
+    res.json({
+      success: true,
+      message: 'RSVP submitted successfully!',
+      rsvp: {
+        fullName: rsvp.fullName,
+        attending: rsvp.attending,
+        submittedAt: rsvp.submittedAt
       }
-    }
+    });
 
-    console.log('🎉 RSVP completed successfully, sending response...');
-    if (!res.headersSent) {
-      res.json({
-        success: true,
-        message: 'RSVP submitted successfully!',
-        rsvp: {
-          fullName: rsvp.fullName,
-          attending: rsvp.attending,
-          submittedAt: rsvp.submittedAt
-        }
-      });
+    // Send emails in the background (non-blocking)
+    sendRSVPNotification(rsvp)
+      .then(() => console.log('RSVP notification email sent to couple'))
+      .catch((emailError) => console.error('Failed to send notification email:', emailError.message));
+
+    if (rsvp.email) {
+      sendGuestConfirmation(rsvp)
+        .then(() => console.log('Confirmation email sent to guest'))
+        .catch((emailError) => console.error('Failed to send confirmation email:', emailError.message));
     }
 
   } catch (error) {
-    console.error('❌ RSVP submission error:', error);
-    console.error('❌ Error stack:', error.stack);
-    if (!res.headersSent) {
-      res.status(500).json({ 
-        success: false, 
-        message: 'Error submitting RSVP. Please try again.' 
-      });
-    }
+    console.error('RSVP submission error:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Error submitting RSVP. Please try again.' 
+    });
   }
 });
 
@@ -235,49 +156,18 @@ app.post('/api/photos', async (req, res) => {
     const {
       uploaderName,
       caption,
+      imageUrl,
       imageData,
+      fileSize,
       fileType
     } = req.body;
 
     // Validate required fields
-    if (!uploaderName || !imageData) {
+    if (!uploaderName || !imageUrl) {
       return res.status(400).json({ 
         success: false, 
-        message: 'Uploader name and image data are required' 
+        message: 'Uploader name and image URL are required' 
       });
-    }
-
-    let imageUrl = null;
-    let fileSize = null;
-
-    // Upload to Cloudinary if image data is provided
-    if (imageData) {
-      try {
-        // Extract base64 data (remove data:image/type;base64, prefix)
-        const base64Data = imageData.replace(/^data:image\/\w+;base64,/, '');
-        
-        const uploadResult = await cloudinary.uploader.upload(
-          `data:image/${fileType || 'jpeg'};base64,${base64Data}`,
-          {
-            folder: 'wedding-photos',
-            resource_type: 'image',
-            allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
-            max_file_size: 10485760, // 10MB
-            public_id: `wedding-${Date.now()}-${Math.random().toString(36).substring(7)}`
-          }
-        );
-        
-        imageUrl = uploadResult.secure_url;
-        fileSize = uploadResult.bytes;
-        
-        console.log('✅ Photo uploaded to Cloudinary:', imageUrl);
-      } catch (cloudinaryError) {
-        console.error('❌ Cloudinary upload error:', cloudinaryError);
-        return res.status(500).json({
-          success: false,
-          message: 'Error uploading photo to cloud storage. Please try again.'
-        });
-      }
     }
 
     // Create photo entry in database
@@ -285,7 +175,7 @@ app.post('/api/photos', async (req, res) => {
       uploaderName,
       caption,
       imageUrl,
-      imageData: null, // Don't store base64 in DB when using Cloudinary
+      imageData,
       fileSize,
       fileType
     });
@@ -299,7 +189,6 @@ app.post('/api/photos', async (req, res) => {
         id: photo.id,
         uploaderName: photo.uploader_name,
         caption: photo.caption,
-        imageUrl: photo.image_url,
         uploadedAt: photo.uploaded_at
       }
     });
@@ -416,7 +305,7 @@ async function sendRSVPNotification(rsvp) {
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
-    to: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
     subject,
     html: htmlContent
   });
@@ -473,7 +362,7 @@ async function sendContactNotification({ name, email, message }) {
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
-    to: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER || 'wedding@shayneandmark.com',
     subject,
     html: htmlContent
   });
@@ -521,8 +410,7 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🎉 Wedding website server running on port ${PORT}`);
   console.log(`📧 Email notifications configured`);
-  console.log(`☁️  Cloudinary photo storage configured`);
-  console.log(`💍 Ready to accept RSVPs and photo uploads!`);
+  console.log(`💍 Ready to accept RSVPs!`);
 });
 
 module.exports = app;
