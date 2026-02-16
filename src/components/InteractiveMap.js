@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './InteractiveMap.css';
@@ -39,20 +39,33 @@ const venues = [
   },
 ];
 
+const FlyToVenue = ({ position }) => {
+  const map = useMap();
+  if (position) {
+    map.flyTo(position, 15, { duration: 1.2 });
+  }
+  return null;
+};
+
 const InteractiveMap = () => {
   const center = [8.48, 124.645];
+  const [flyTo, setFlyTo] = useState(null);
 
   return (
     <div className="interactive-map-wrapper">
       <div className="map-legend">
         {venues.map(venue => (
-          <div key={venue.id} className="legend-item">
+          <button
+            key={venue.id}
+            className="legend-item"
+            onClick={() => setFlyTo(venue.position)}
+          >
             <div className="legend-marker" />
-            <div>
+            <div className="legend-text">
               <strong>{venue.type}</strong>
               <span>{venue.name}</span>
             </div>
-          </div>
+          </button>
         ))}
       </div>
       <div className="interactive-map-container">
@@ -60,12 +73,13 @@ const InteractiveMap = () => {
           center={center}
           zoom={13}
           scrollWheelZoom={false}
-          style={{ height: '450px', width: '100%' }}
+          style={{ height: '500px', width: '100%' }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Tiles &copy; <a href="https://carto.com/">CARTO</a>'
             url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           />
+          {flyTo && <FlyToVenue position={flyTo} />}
           {venues.map(venue => (
             <Marker key={venue.id} position={venue.position} icon={goldIcon}>
               <Popup className="venue-popup">
