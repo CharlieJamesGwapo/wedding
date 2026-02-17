@@ -23,9 +23,9 @@ const venues = [
     type: 'Ceremony',
     time: '9:00 AM',
     address: 'J.V. Serina St. Carmen, CDO City',
-    position: [8.4684, 124.6335],
-    googleMapsUrl: 'https://www.google.com/maps/search/Our+Lady+of+Mount+Carmel+Parish+Church+J.V.+Serina+St.+Carmen+CDO+City',
-    wazeUrl: 'https://www.waze.com/ul?ll=8.4684,124.6335&navigate=yes',
+    position: [8.4808783, 124.6294498],
+    googleMapsUrl: 'https://www.google.com/maps/place/Our+Lady+of+Mt.+Carmel+Parish/@8.4808783,124.6268749,17z/data=!4m14!1m7!3m6!1s0x32fff33aa383813f:0xf1871b29410b7707!2sOur+Lady+of+Mt.+Carmel+Parish!8m2!3d8.4808783!4d124.6294498!16s%2Fg%2F1vcl196m!3m5!1s0x32fff33aa383813f:0xf1871b29410b7707!8m2!3d8.4808783!4d124.6294498!16s%2Fg%2F1vcl196m',
+    wazeUrl: 'https://www.waze.com/ul?ll=8.4808783,124.6294498&navigate=yes',
   },
   {
     id: 'reception',
@@ -48,7 +48,7 @@ const FlyToVenue = ({ position }) => {
 };
 
 const InteractiveMap = () => {
-  const center = [8.48, 124.645];
+  const center = [8.487, 124.645];
   const [flyTo, setFlyTo] = useState(null);
 
   return (

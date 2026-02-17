@@ -2,148 +2,61 @@ import React from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import './DressCode.css';
 
+const AirplaneIcon = () => (
+  <svg viewBox="0 0 24 24" className="airplane-svg-dc" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#2c2c2c" />
+  </svg>
+);
+
 const DressCode = () => {
   useScrollAnimation();
-
-  const colorPalette = [
-    { name: 'Sage Green', hex: '#87A96B' },
-    { name: 'Champagne', hex: '#F7E7CE' },
-    { name: 'Navy', hex: '#2C3E50' },
-    { name: 'Blush Pink', hex: '#F4C2C2' },
-    { name: 'Burgundy', hex: '#800020' },
-    { name: 'Muted Gold', hex: '#D4A574' }
-  ];
 
   return (
     <div className="dress-code">
       <section className="hero-section">
         <div className="container">
           <h1>Dress Code</h1>
-          <p>Formal Garden Attire</p>
+          <p>Finer Details</p>
         </div>
       </section>
 
       <section className="dress-code-content section">
         <div className="container">
-          <div className="dress-code-intro" data-animate="fade-up">
-            <h2>What to Wear</h2>
-            <p>
-              We want our guests to feel comfortable and elegant while celebrating with us in
-              the beautiful Cagayan de Oro. Our dress code is formal garden attire -
-              think sophisticated yet comfortable for an outdoor celebration.
-            </p>
-          </div>
+          <h2 className="finer-title">Finer Details</h2>
 
-          <div className="attire-guide">
-            <div className="attire-section" data-animate="fade-left">
-              <h3>For the Ladies</h3>
-              <div className="attire-recommendations">
-                <div className="attire-item" data-animate="fade-up" data-delay="0.1">
-                  <span className="attire-icon">👗</span>
-                  <div>
-                    <h4>Cocktail Dresses</h4>
-                    <p>Long or short dresses in elegant fabrics</p>
-                  </div>
+          {/* ATTIRE */}
+          <div className="attire-inv" data-animate="fade-up">
+            <div className="attire-header-row-dc">
+              <h3 className="attire-typewriter">ATTIRE</h3>
+              <div className="attire-dots" />
+              <AirplaneIcon />
+            </div>
+
+            <div className="attire-block" data-animate="fade-up" data-delay="0.1">
+              <h4 className="attire-label">FOR NINONG & NINANG</h4>
+              <div className="attire-row">
+                <div className="attire-colors">
+                  <div className="dc-swatch" style={{ background: '#8a8068' }} />
+                  <div className="dc-swatch" style={{ background: '#c8b99a' }} />
+                  <div className="dc-swatch" style={{ background: '#c9a96e' }} />
                 </div>
-                <div className="attire-item" data-animate="fade-up" data-delay="0.2">
-                  <span className="attire-icon">👠</span>
-                  <div>
-                    <h4>Heels or Wedges</h4>
-                    <p>Consider block heels for grass areas</p>
-                  </div>
-                </div>
-                <div className="attire-item" data-animate="fade-up" data-delay="0.3">
-                  <span className="attire-icon">🧥</span>
-                  <div>
-                    <h4>Light Wraps</h4>
-                    <p>Evenings are warm and tropical</p>
-                  </div>
-                </div>
+                <p className="attire-desc">
+                  Barong Tagalog/ Long sleeves/ Filipiniana/ Formal Dress in shade of camel, brown, & tan colors.
+                </p>
               </div>
             </div>
 
-            <div className="attire-section" data-animate="fade-right">
-              <h3>For the Gentlemen</h3>
-              <div className="attire-recommendations">
-                <div className="attire-item" data-animate="fade-up" data-delay="0.1">
-                  <span className="attire-icon">🤵</span>
-                  <div>
-                    <h4>Suits or Sport Coats</h4>
-                    <p>Light colors work beautifully for outdoor settings</p>
-                  </div>
+            <div className="attire-block" data-animate="fade-up" data-delay="0.2">
+              <h4 className="attire-label">FOR GUESTS</h4>
+              <div className="attire-row">
+                <div className="attire-colors">
+                  <div className="dc-swatch" style={{ background: '#4a4a4a' }} />
+                  <div className="dc-swatch" style={{ background: '#808080' }} />
+                  <div className="dc-swatch" style={{ background: '#b0b0b0' }} />
                 </div>
-                <div className="attire-item" data-animate="fade-up" data-delay="0.2">
-                  <span className="attire-icon">👔</span>
-                  <div>
-                    <h4>Dress Shirts</h4>
-                    <p>Ties optional but welcome</p>
-                  </div>
-                </div>
-                <div className="attire-item" data-animate="fade-up" data-delay="0.3">
-                  <span className="attire-icon">👞</span>
-                  <div>
-                    <h4>Dress Shoes</h4>
-                    <p>Loafers or dress shoes, avoid casual sneakers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="color-palette-section" data-animate="fade-up">
-            <h2>Suggested Color Palette</h2>
-            <p className="palette-description">
-              While not required, these colors complement our wedding theme and our tropical wedding setting:
-            </p>
-            <div className="color-palette">
-              {colorPalette.map((color, index) => (
-                <div key={index} className="color-item" data-animate="scale-in" data-delay={index * 0.1}>
-                  <div
-                    className="color-swatch"
-                    style={{ backgroundColor: color.hex }}
-                  ></div>
-                  <span className="color-name">{color.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="practical-tips">
-            <h2 data-animate="fade-up">Practical Considerations</h2>
-            <div className="tips-grid">
-              <div className="tip-card" data-animate="fade-up" data-delay="0.1">
-                <div className="tip-icon">🌤️</div>
-                <h3>Weather</h3>
-                <p>
-                  February in Cagayan de Oro is warm and tropical (82-90°F) with occasional rain showers.
-                  Layers are recommended for comfort throughout the day.
-                </p>
-              </div>
-
-              <div className="tip-card" data-animate="fade-up" data-delay="0.2">
-                <div className="tip-icon">🌿</div>
-                <h3>Outdoor Venue</h3>
-                <p>
-                  Both ceremony and cocktail hour will be outdoors on grass.
-                  Consider heel type and avoid stilettos that might sink into soft ground.
-                </p>
-              </div>
-
-              <div className="tip-card" data-animate="fade-up" data-delay="0.3">
-                <div className="tip-icon">📸</div>
-                <h3>Photos</h3>
-                <p>
-                  Solid colors and elegant patterns photograph beautifully.
-                  Avoid large logos or very casual attire.
-                </p>
-              </div>
-
-              <div className="tip-card" data-animate="fade-up" data-delay="0.4">
-                <div className="tip-icon">🍷</div>
-                <h3>Comfort</h3>
-                <p>
-                  You'll be celebrating with us for several hours.
-                  Choose outfits that allow you to dance and enjoy the evening comfortably.
+                <p className="attire-desc">
+                  Formal attire in shade of gray.<br />
+                  *No jeans and no white color, please.
                 </p>
               </div>
             </div>
@@ -153,19 +66,19 @@ const DressCode = () => {
             <h2>What to Avoid</h2>
             <div className="avoid-list">
               <div className="avoid-item" data-animate="fade-left" data-delay="0.1">
-                <span className="avoid-icon">❌</span>
+                <div className="avoid-number">&#10005;</div>
                 <p>Denim, shorts, or t-shirts</p>
               </div>
               <div className="avoid-item" data-animate="fade-left" data-delay="0.15">
-                <span className="avoid-icon">❌</span>
+                <div className="avoid-number">&#10005;</div>
                 <p>Athletic wear or sneakers</p>
               </div>
               <div className="avoid-item" data-animate="fade-left" data-delay="0.2">
-                <span className="avoid-icon">❌</span>
+                <div className="avoid-number">&#10005;</div>
                 <p>Very casual beachwear (flip-flops, tank tops)</p>
               </div>
               <div className="avoid-item" data-animate="fade-left" data-delay="0.25">
-                <span className="avoid-icon">❌</span>
+                <div className="avoid-number">&#10005;</div>
                 <p>White or ivory colors (reserved for the bride)</p>
               </div>
             </div>

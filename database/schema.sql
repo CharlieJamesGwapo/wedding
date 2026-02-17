@@ -33,11 +33,23 @@ CREATE TABLE IF NOT EXISTS photos (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Guestbook wishes table to store guest messages
+CREATE TABLE IF NOT EXISTS guestbook_wishes (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name VARCHAR(255) NOT NULL,
+    relationship VARCHAR(100),
+    message TEXT NOT NULL,
+    featured BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_rsvps_submitted_at ON rsvps(submitted_at DESC);
 CREATE INDEX IF NOT EXISTS idx_rsvps_attending ON rsvps(attending);
 CREATE INDEX IF NOT EXISTS idx_photos_uploaded_at ON photos(uploaded_at DESC);
 CREATE INDEX IF NOT EXISTS idx_photos_approved ON photos(approved);
+CREATE INDEX IF NOT EXISTS idx_guestbook_created_at ON guestbook_wishes(created_at DESC);
 
 -- Create a function to automatically update the updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -53,6 +65,9 @@ CREATE TRIGGER update_rsvps_updated_at BEFORE UPDATE ON rsvps
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TRIGGER update_photos_updated_at BEFORE UPDATE ON photos
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_guestbook_updated_at BEFORE UPDATE ON guestbook_wishes
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 -- Insert some sample data for testing (optional)

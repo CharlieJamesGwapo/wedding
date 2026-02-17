@@ -1,381 +1,705 @@
-.hero-section {
-  background: linear-gradient(rgba(139, 115, 85, 0.8), rgba(139, 115, 85, 0.8)),
-              url('https://images.unsplash.com/photo-1519225471986-9bb232d97d6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
-  background-size: cover;
-  background-position: center;
+/* ── Guestbook — Retro Travel Theme ── */
+
+/* ── Hero ── */
+.gb-hero {
+  background: #fff;
   text-align: center;
-  color: white;
-  padding: 120px 0 80px;
+  padding: 130px 0 70px;
   margin-top: 80px;
-}
-
-.hero-section h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-.hero-section p {
-  font-size: 1.3rem;
-  max-width: 600px;
-  margin: 0 auto;
-  opacity: 0.9;
-}
-
-.guestbook-intro {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 4rem;
-}
-
-.guestbook-intro h2 {
-  color: #333;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-
-.guestbook-intro p {
-  color: #666;
-  line-height: 1.8;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-.add-wish-btn {
-  padding: 15px 30px;
-  font-size: 1.1rem;
-  border-radius: 25px;
-}
-
-.featured-wishes {
-  margin-bottom: 4rem;
-}
-
-.featured-wishes h3 {
-  color: #333;
-  margin-bottom: 2rem;
-  font-size: 1.8rem;
-  text-align: center;
-}
-
-.all-wishes h3 {
-  color: #333;
-  margin-bottom: 2rem;
-  font-size: 1.8rem;
-  text-align: center;
-}
-
-.wishes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-}
-
-.wishes-grid.featured {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-}
-
-.wish-card {
-  background: white;
-  border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
   position: relative;
+  overflow: hidden;
 }
 
-.wish-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+.gb-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
 }
 
-.wish-card.featured {
-  border: 2px solid #d4a574;
-  background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
-}
-
-.wish-header {
+.gb-hero-decos {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   margin-bottom: 1.5rem;
 }
 
-.wish-header h4 {
-  color: #333;
+.gb-deco-svg {
+  width: 36px;
+  height: 36px;
+  opacity: 0.55;
+}
+
+.gb-hero-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.8rem;
+  color: #2c2c2c;
+  font-weight: 400;
+  margin: 0 0 0.75rem;
+}
+
+.gb-hero-divider {
+  width: 60px;
+  height: 2px;
+  background: #d4af37;
+  margin: 0 auto 1rem;
+  border-radius: 2px;
+}
+
+.gb-hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: #5c5428;
+  letter-spacing: 0.06em;
   margin: 0;
-  font-size: 1.3rem;
 }
 
-.relationship {
-  color: #d4a574;
-  font-size: 0.9rem;
-  font-style: italic;
-}
-
-.wish-content {
-  margin-bottom: 1.5rem;
-}
-
-.wish-content p {
-  color: #666;
-  line-height: 1.8;
-  font-size: 1rem;
-  font-style: italic;
-  margin: 0;
-}
-
-.wish-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.9rem;
-}
-
-.date {
-  color: #999;
-}
-
-.featured-badge {
-  background: #d4a574;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.no-wishes {
+/* ── Section titles ── */
+.gb-script-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.6rem;
+  color: #2c2c2c;
   text-align: center;
-  padding: 4rem 2rem;
-  background: #fafafa;
-  border-radius: 15px;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
 }
 
-.no-wishes-icon {
-  font-size: 4rem;
-  margin-bottom: 2rem;
-  display: block;
+.gb-script-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background: #d4af37;
+  border-radius: 2px;
 }
 
-.no-wishes h3 {
-  color: #333;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+/* ── Passport / Intro card ── */
+.gb-intro-section {
+  padding: 4rem 0;
 }
 
-.no-wishes p {
-  color: #666;
-  line-height: 1.6;
-  margin: 0;
+.gb-passport-card {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  overflow: hidden;
 }
 
-.wish-modal {
-  position: fixed;
+.gb-passport-accent {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e, #d4af37);
+}
+
+.gb-passport-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.gb-passport-stamp {
+  width: 52px;
+  height: 52px;
+  border: 2px solid #d4af37;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gb-passport-stamp .gb-deco-svg {
+  width: 30px;
+  height: 30px;
+  opacity: 0.7;
+}
+
+.gb-passport-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #2c2c2c;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.gb-passport-route {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: #5c5428;
+  letter-spacing: 0.1em;
+  margin: 0.15rem 0 0;
+  text-transform: uppercase;
+}
+
+.gb-passport-divider {
+  width: 100%;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    #d4af37 0,
+    #d4af37 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.gb-passport-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.85;
+  margin: 0 0 2rem;
+}
+
+.gb-passport-footer {
+  margin-bottom: 1.75rem;
+}
+
+.gb-deco-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.gb-deco-row .gb-deco-svg {
+  width: 28px;
+  height: 28px;
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+.gb-dotted-line {
+  flex: 1;
+  height: 0;
+  border-top: 2px dashed rgba(44, 44, 44, 0.2);
+}
+
+/* CTA button */
+.gb-cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #d4af37 0%, #c9a96e 100%);
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 14px 36px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+}
+
+.gb-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+}
+
+/* ── Wish cards (Featured + All) ── */
+.gb-featured-section,
+.gb-all-section {
+  padding: 3rem 0;
+}
+
+.gb-wishes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 2rem;
+}
+
+.gb-featured-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+}
+
+.gb-wish-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gb-wish-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+}
+
+.gb-wish-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e);
+}
+
+.gb-wish-featured {
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.gb-wish-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #d4af37;
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gb-wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.gb-wish-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: #2c2c2c;
+  font-weight: 600;
+  margin: 0;
+}
+
+.gb-wish-rel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: #5c5428;
+  font-style: italic;
+}
+
+.gb-wish-divider {
+  width: 100%;
+  height: 1px;
+  background: #eee;
+  margin-bottom: 1rem;
+}
+
+.gb-wish-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.8;
+  font-style: italic;
+  margin: 0 0 1.25rem;
+}
+
+.gb-wish-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gb-wish-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.gb-wish-featured-tag {
+  background: rgba(212, 175, 55, 0.12);
+  color: #5c5428;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Empty state ── */
+.gb-empty {
+  padding: 3rem 0;
+}
+
+.gb-empty-card {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #fafafa;
+  border-radius: 16px;
+  border: 1px dashed rgba(212, 175, 55, 0.3);
+}
+
+.gb-empty-card .gb-deco-svg {
+  width: 60px;
+  height: 60px;
+  opacity: 0.35;
+  margin: 0 auto 1.5rem;
+  display: block;
+}
+
+.gb-empty-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #2c2c2c;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.gb-empty-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Modal ── */
+.gb-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
   padding: 2rem;
+  backdrop-filter: blur(3px);
 }
 
-.modal-content {
-  background: white;
-  border-radius: 20px;
-  max-width: 600px;
+.gb-modal {
+  background: #fff;
+  border-radius: 18px;
+  max-width: 580px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
-.modal-close {
+.gb-modal-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
   background: none;
   border: none;
-  font-size: 2rem;
   cursor: pointer;
-  color: #666;
-  z-index: 1;
-  width: 40px;
-  height: 40px;
+  color: #999;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: background 0.25s, color 0.25s;
+  z-index: 1;
 }
 
-.modal-close:hover {
+.gb-modal-close:hover {
   background: #f0f0f0;
   color: #333;
 }
 
-.modal-header {
+.gb-modal-header {
   text-align: center;
-  padding: 2rem 2rem 1rem;
+  padding: 2.5rem 2rem 1.25rem;
 }
 
-.modal-header h3 {
-  color: #333;
-  margin-bottom: 1rem;
-  font-size: 1.8rem;
+.gb-modal-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #2c2c2c;
+  font-weight: 400;
+  margin: 0 0 0.75rem;
 }
 
-.modal-header p {
-  color: #666;
+.gb-modal-divider {
+  width: 50px;
+  height: 2px;
+  background: #d4af37;
+  margin: 0 auto 1rem;
+  border-radius: 2px;
+}
+
+.gb-modal-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: #777;
   line-height: 1.6;
   margin: 0;
-  font-size: 1rem;
 }
 
-.wish-form {
-  padding: 0 2rem 2rem;
+/* ── Form ── */
+.gb-form {
+  padding: 0 2rem 2.5rem;
 }
 
-.form-group {
+.gb-form-group {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.gb-form-group label {
   display: block;
-  color: #333;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+.gb-form-group input,
+.gb-form-group select,
+.gb-form-group textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e1e1e1;
-  border-radius: 8px;
+  border: 2px solid #e8e8e8;
+  border-radius: 10px;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
-  font-family: inherit;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  box-sizing: border-box;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.gb-form-group input:focus,
+.gb-form-group select:focus,
+.gb-form-group textarea:focus {
   outline: none;
-  border-color: #d4a574;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
-.form-group textarea {
+.gb-form-group textarea {
   resize: vertical;
   min-height: 120px;
 }
 
-.character-count {
-  text-align: right;
-  color: #999;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
+.gb-form-group input::placeholder,
+.gb-form-group textarea::placeholder {
+  color: #bbb;
 }
 
-.form-actions {
+.gb-char-count {
+  text-align: right;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 0.4rem;
+}
+
+.gb-form-actions {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-top: 2rem;
 }
 
-.submit-btn {
-  background: #d4a574;
-  color: white;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 25px;
-  font-size: 1rem;
+.gb-submit-btn {
+  background: linear-gradient(135deg, #d4af37 0%, #c9a96e 100%);
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
   font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 13px 32px;
+  border: none;
+  border-radius: 28px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 150px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+  min-width: 160px;
 }
 
-.submit-btn:hover:not(:disabled) {
-  background: #b8935f;
+.gb-submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.4);
 }
 
-.submit-btn:disabled {
-  opacity: 0.6;
+.gb-submit-btn:disabled {
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
-.btn-outline {
+.gb-cancel-btn {
   background: transparent;
-  color: #d4a574;
-  border: 2px solid #d4a574;
-  padding: 12px 30px;
-  border-radius: 25px;
-  text-decoration: none;
+  color: #999;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
   font-weight: 600;
-  transition: all 0.3s ease;
+  padding: 13px 28px;
+  border: 2px solid #ddd;
+  border-radius: 28px;
   cursor: pointer;
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-.btn-outline:hover {
-  background: #d4a574;
-  color: white;
+.gb-cancel-btn:hover {
+  border-color: #999;
+  color: #555;
 }
 
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  .hero-section {
-    padding: 100px 0 60px;
+  .gb-hero {
+    padding: 105px 0 55px;
     margin-top: 70px;
   }
-  
-  .hero-section h1 {
-    font-size: 2.5rem;
+
+  .gb-hero-title {
+    font-size: 2.8rem;
   }
-  
-  .hero-section p {
-    font-size: 1.1rem;
+
+  .gb-hero-subtitle {
+    font-size: 1.05rem;
   }
-  
-  .wishes-grid {
+
+  .gb-passport-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .gb-passport-title {
+    font-size: 1.65rem;
+  }
+
+  .gb-script-title {
+    font-size: 2.1rem;
+  }
+
+  .gb-wishes-grid,
+  .gb-featured-grid {
     grid-template-columns: 1fr;
   }
-  
-  .wishes-grid.featured {
-    grid-template-columns: 1fr;
-  }
-  
-  .wish-modal {
+
+  .gb-modal-overlay {
     padding: 1rem;
   }
-  
-  .modal-content {
+
+  .gb-modal {
     max-height: 95vh;
   }
-  
-  .modal-header {
-    padding: 1.5rem 1.5rem 1rem;
+
+  .gb-modal-header {
+    padding: 2rem 1.5rem 1rem;
   }
-  
-  .wish-form {
-    padding: 0 1.5rem 1.5rem;
+
+  .gb-modal-title {
+    font-size: 1.8rem;
   }
-  
-  .form-actions {
+
+  .gb-form {
+    padding: 0 1.5rem 2rem;
+  }
+
+  .gb-form-actions {
     flex-direction: column;
     align-items: center;
   }
-  
-  .submit-btn,
-  .btn-outline {
+
+  .gb-submit-btn,
+  .gb-cancel-btn {
     width: 100%;
-    max-width: 250px;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gb-hero {
+    padding: 92px 0 44px;
+    margin-top: 56px;
+  }
+
+  .gb-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .gb-hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .gb-hero-decos .gb-deco-svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .gb-intro-section {
+    padding: 2.5rem 0;
+  }
+
+  .gb-passport-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .gb-passport-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .gb-passport-title {
+    font-size: 1.45rem;
+  }
+
+  .gb-passport-text {
+    font-size: 1rem;
+  }
+
+  .gb-script-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .gb-wish-card {
+    padding: 1.5rem;
+  }
+
+  .gb-wish-name {
+    font-size: 1.15rem;
+  }
+
+  .gb-wish-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .gb-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .gb-form {
+    padding: 0 1.25rem 1.5rem;
+  }
+
+  .gb-form-group input,
+  .gb-form-group select,
+  .gb-form-group textarea {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  .gb-submit-btn {
+    font-size: 0.95rem;
+    padding: 12px 24px;
   }
 }

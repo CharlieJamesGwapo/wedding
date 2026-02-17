@@ -37,7 +37,6 @@ const Gallery = () => {
     });
   }, [images.length]);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (selectedIndex === null) return;
@@ -49,7 +48,6 @@ const Gallery = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex, closeLightbox, navigateImage]);
 
-  // Touch/swipe support for lightbox
   const handleTouchStart = (e) => {
     setTouchStart(e.touches[0].clientX);
   };
@@ -69,31 +67,39 @@ const Gallery = () => {
 
   return (
     <div className="gallery">
-      <section className="hero-section" style={{ backgroundImage: `linear-gradient(rgba(30, 20, 10, 0.6), rgba(30, 20, 10, 0.7)), url(${process.env.PUBLIC_URL}/moments-1.jpg)` }}>
+      {/* Hero - matching WeddingDetails style */}
+      <section className="gallery-hero">
         <div className="container">
-          <h1 data-animate="fade-up">Our Gallery</h1>
-          <p data-animate="fade-up" data-delay="0.2">Moments from our journey together</p>
+          <h1 className="gallery-hero-title" data-animate="fade-up">Our Gallery</h1>
+          <div className="gallery-hero-divider" />
+          <p className="gallery-hero-subtitle" data-animate="fade-up" data-delay="0.15">Moments from our journey together</p>
         </div>
       </section>
 
-      <section className="gallery-content section">
+      {/* Intro */}
+      <section className="gallery-intro-section section" data-animate="fade-up">
         <div className="container">
-          <div className="gallery-intro" data-animate="fade-up">
-            <h2>Our Love Story in Pictures</h2>
-            <p>
-              Every photo tells a part of our story — the laughter, the love,
+          <div className="gallery-intro">
+            <h2 className="gallery-script-title" data-animate="fade-up">Our Love Story in Pictures</h2>
+            <p className="gallery-intro-text" data-animate="fade-up" data-delay="0.1">
+              Every photo tells a part of our story &mdash; the laughter, the love,
               and the beautiful moments that brought us to forever.
             </p>
           </div>
+        </div>
+      </section>
 
+      {/* Masonry Grid */}
+      <section className="gallery-grid-section">
+        <div className="container">
           <div className="gallery-masonry">
             {images.map((image, index) => (
               <div
                 key={image.id}
                 className={`gallery-item ${image.span} ${imageLoaded[image.id] ? 'loaded' : ''}`}
                 onClick={() => openLightbox(index)}
-                data-animate="zoom-in"
-                data-delay={index * 0.1}
+                data-animate="scale-in"
+                data-delay={index * 0.08}
               >
                 <div className="gallery-image-wrapper">
                   <img
@@ -106,7 +112,7 @@ const Gallery = () => {
                   <div className="gallery-overlay">
                     <div className="overlay-content">
                       <span className="view-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <circle cx="11" cy="11" r="8"/>
                           <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                           <line x1="11" y1="8" x2="11" y2="14"/>
@@ -120,25 +126,36 @@ const Gallery = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="gallery-counter" data-animate="fade-up">
-            <span className="counter-number">{images.length}</span>
-            <span className="counter-text">Precious Moments</span>
-          </div>
-
-          <div className="gallery-note" data-animate="fade-up">
-            <div className="note-content">
-              <div className="note-icon">📸</div>
-              <h3>Wedding Photos Coming Soon!</h3>
-              <p>
-                After our special day, we'll be adding all the beautiful wedding photos here.
-                Check back after February 25, 2026 to see moments from our celebration!
-              </p>
-            </div>
+      {/* Counter */}
+      <section className="gallery-counter-section" data-animate="fade-up">
+        <div className="container">
+          <div className="gallery-counter-card">
+            <span className="gallery-counter-number">{images.length}</span>
+            <div className="gallery-counter-divider" />
+            <span className="gallery-counter-text">Precious Moments</span>
           </div>
         </div>
       </section>
 
+      {/* Coming Soon Note */}
+      <section className="gallery-note-section section" data-animate="fade-up">
+        <div className="container">
+          <div className="gallery-note-card">
+            <div className="gallery-note-accent" />
+            <h3 className="gallery-note-title">Coming Soon</h3>
+            <div className="gallery-note-divider" />
+            <p className="gallery-note-text">
+              After our special day, we'll be adding all the beautiful wedding photos here.
+              Check back after February 25, 2026 to see moments from our celebration!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Lightbox */}
       {selectedIndex !== null && (
         <div
           className="lightbox"

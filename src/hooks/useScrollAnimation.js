@@ -1,25 +1,35 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Global scroll animation hook using Intersection Observer.
+ * Enhanced scroll animation hook using Intersection Observer.
  * Automatically observes all elements with data-animate attribute
- * and adds 'visible' class when they scroll into view.
+ * and adds 'scroll-visible' class when they scroll into view.
  *
- * Usage: call useScrollAnimation() in any page component.
- * Then add data-animate="fade-up|fade-left|fade-right|scale-in|fade-in" to elements.
- * Optionally add data-delay="0.1" for stagger delays (in seconds).
+ * Supported animations:
+ *   data-animate="fade-up|fade-down|fade-left|fade-right|scale-in|fade-in|zoom-in|slide-up
+ *                 |blur-in|rotate-in|flip-up|bounce-in|swing-in|float-up|reveal-up
+ *                 |slide-in-left|slide-in-right|tilt-in|pop-in|drift-up"
+ *   data-delay="0.1" (stagger delay in seconds)
+ *   data-duration="1.2" (custom duration in seconds)
  */
 const useScrollAnimation = (options = {}) => {
   const observerRef = useRef(null);
 
   useEffect(() => {
-    const { threshold = 0.1, rootMargin = '0px 0px -40px 0px' } = options;
+    const { threshold = 0.08, rootMargin = '0px 0px -40px 0px' } = options;
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const delay = entry.target.dataset.delay || 0;
+            const delay = parseFloat(entry.target.dataset.delay) || 0;
+            const duration = entry.target.dataset.duration;
+
+            // Apply custom duration if specified
+            if (duration) {
+              entry.target.style.transitionDuration = `${duration}s`;
+            }
+
             if (delay > 0) {
               setTimeout(() => {
                 entry.target.classList.add('scroll-visible');
@@ -34,12 +44,16 @@ const useScrollAnimation = (options = {}) => {
       { threshold, rootMargin }
     );
 
-    const elements = document.querySelectorAll('[data-animate]');
-    elements.forEach((el) => {
-      observerRef.current.observe(el);
-    });
+    // Small delay to ensure DOM is ready after render
+    const timer = setTimeout(() => {
+      const elements = document.querySelectorAll('[data-animate]');
+      elements.forEach((el) => {
+        observerRef.current?.observe(el);
+      });
+    }, 100);
 
     return () => {
+      clearTimeout(timer);
       if (observerRef.current) {
         observerRef.current.disconnect();
       }

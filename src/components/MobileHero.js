@@ -58,11 +58,7 @@ const MobileHero = () => {
         </div>
         
         <div className="hero-actions">
-          <Link to="/rsvp" className="hero-btn primary">
-            <span className="btn-icon">💍</span>
-            <span>RSVP</span>
-          </Link>
-          <Link to="/wedding-details" className="hero-btn secondary">
+          <Link to="/wedding-details" className="hero-btn primary">
             <span className="btn-icon">📋</span>
             <span>Details</span>
           </Link>

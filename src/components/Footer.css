@@ -1,4 +1,6 @@
 /* ===== FOOTER ===== */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
+
 .footer {
   background: linear-gradient(180deg, #2a2520, #1e1a16);
   color: #faf8f5;
@@ -25,27 +27,38 @@
   margin-bottom: 3rem;
 }
 
-.footer-brand h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 3vw, 2rem);
+.footer-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.2rem, 4vw, 3rem);
   font-weight: 400;
   color: #d4af37;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-gold-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto 0.75rem;
 }
 
 .footer-date {
-  font-size: 0.95rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
   color: rgba(250, 248, 245, 0.7);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 0.25rem;
+  font-weight: 400;
 }
 
 .footer-location {
-  font-size: 0.85rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
   color: rgba(250, 248, 245, 0.5);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  font-weight: 300;
 }
 
 /* ===== LINKS GRID ===== */
@@ -58,25 +71,27 @@
 }
 
 .footer-col h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.85rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
   color: #d4af37;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .footer-link {
   display: block;
+  font-family: 'Cormorant Garamond', serif;
   color: rgba(250, 248, 245, 0.7);
   text-decoration: none;
-  font-size: 0.9rem;
-  padding: 0.35rem 0;
+  font-size: 0.95rem;
+  padding: 0.4rem 0;
   transition: color 0.3s ease, transform 0.3s ease;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  font-weight: 400;
 }
 
 .footer-link:hover {
@@ -87,26 +102,44 @@
 /* ===== BOTTOM ===== */
 .footer-bottom {
   text-align: center;
-  padding: 1.5rem 0;
+  padding: 1.5rem 0 2rem;
 }
 
-.footer-divider {
+.footer-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-ornament-line {
   width: 60px;
   height: 1px;
   background: rgba(212, 175, 55, 0.3);
-  margin: 0 auto 1.5rem;
 }
 
-.footer-bottom p {
-  font-size: 0.85rem;
+.footer-ornament-symbol {
+  color: #d4af37;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
   color: rgba(250, 248, 245, 0.5);
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+  font-style: italic;
+  font-weight: 300;
 }
 
 .footer-copyright {
-  font-size: 0.75rem !important;
-  color: rgba(250, 248, 245, 0.3) !important;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  color: rgba(250, 248, 245, 0.3);
+  letter-spacing: 0.05em;
 }
 
 /* ===== TABLET ===== */
@@ -123,7 +156,7 @@
   }
 
   .footer-link {
-    font-size: 0.82rem;
+    font-size: 0.88rem;
   }
 }
 
@@ -143,8 +176,8 @@
     transform: none;
   }
 
-  .footer-brand h3 {
-    font-size: 1.5rem;
+  .footer-names {
+    font-size: 2rem;
   }
 }
 

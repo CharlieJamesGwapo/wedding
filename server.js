@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const path = require('path');
-const { initializeDatabase, rsvpModel, photoModel } = require('./database/db');
+const { initializeDatabase, rsvpModel, photoModel, guestbookModel } = require('./database/db');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -253,6 +253,68 @@ app.post('/api/photos/:id/like', async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Error liking photo'
+    });
+  }
+});
+
+// Guestbook endpoints
+app.get('/api/guestbook', async (req, res) => {
+  try {
+    const result = await guestbookModel.getAll();
+
+    const wishes = result.rows.map(wish => ({
+      id: wish.id,
+      name: wish.name,
+      relationship: wish.relationship || '',
+      message: wish.message,
+      featured: wish.featured,
+      date: wish.created_at
+    }));
+
+    res.json({
+      success: true,
+      wishes
+    });
+  } catch (error) {
+    console.error('Error fetching guestbook wishes:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching guestbook wishes'
+    });
+  }
+});
+
+app.post('/api/guestbook', async (req, res) => {
+  try {
+    const { name, relationship, message } = req.body;
+
+    if (!name || !message) {
+      return res.status(400).json({
+        success: false,
+        message: 'Name and message are required'
+      });
+    }
+
+    const result = await guestbookModel.create({ name, relationship, message });
+    const wish = result.rows[0];
+
+    res.json({
+      success: true,
+      message: 'Wish submitted successfully!',
+      wish: {
+        id: wish.id,
+        name: wish.name,
+        relationship: wish.relationship || '',
+        message: wish.message,
+        featured: wish.featured,
+        date: wish.created_at
+      }
+    });
+  } catch (error) {
+    console.error('Guestbook submission error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error submitting wish. Please try again.'
     });
   }
 });

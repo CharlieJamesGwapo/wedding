@@ -1,25 +1,91 @@
+/* ============================
+   CUSTOM HERO - Wedding Details
+   ============================ */
+.wd-hero {
+  background: #ffffff;
+  text-align: center;
+  padding: 140px 1.5rem 60px;
+  margin-top: 70px;
+  position: relative;
+}
+
+.wd-hero-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #5c5428;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.wd-hero-divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto 1rem;
+}
+
+.wd-hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #666;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Script titles for all sections */
+.wd-script-title {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 2.8rem !important;
+  color: #5c5428 !important;
+  font-weight: 400 !important;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+}
+
+.wd-script-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0.75rem auto 0;
+}
+
+/* ============================
+   EVENTS GRID - Improved
+   ============================ */
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+  align-items: stretch;
 }
 
 .event-card {
   background: white;
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.07);
   text-align: center;
   position: relative;
   overflow: visible;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card-spacer {
+  flex: 1;
 }
 
 .event-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(212, 175, 55, 0.12);
   border-color: rgba(212, 175, 55, 0.3);
 }
 
@@ -29,60 +95,76 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, #d4a574, #8b7355);
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e);
+  border-radius: 16px 16px 0 0;
 }
 
-.event-card.ceremony::before {
-  background: linear-gradient(90deg, #8b7355, #d4a574);
-}
-
-.event-icon {
-  font-size: 4rem;
-  margin-bottom: 2rem;
-  display: block;
-}
-
-.event-card h2 {
-  color: #333;
-  margin-bottom: 2rem;
-  font-size: 2rem;
+.event-badge {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
 }
 
 .event-details {
   text-align: left;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* Event Header Styling */
 .event-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .event-header h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  color: #3a3a3a;
-  margin-bottom: 0.5rem;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #5c5428;
+  margin-bottom: 0.4rem;
+  font-weight: 400;
 }
 
 .event-time {
-  font-size: 1.1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
   color: #d4af37;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.event-divider {
+  width: 50px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto 1.25rem;
 }
 
 .event-info h4 {
-  font-size: 1.15rem;
-  color: #3a3a3a;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: #2c2c2c;
   font-weight: 600;
   margin-bottom: 0.3rem;
 }
 
 .event-info p {
-  color: #888;
-  font-size: 0.95rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: #777;
+  font-size: 1rem;
+}
+
+.event-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: #999;
+  font-style: italic;
+  margin-top: 0.5rem;
 }
 
 .event-actions {
@@ -106,13 +188,15 @@
   background: linear-gradient(135deg, #d4af37, #b8941f);
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: 4px;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-  letter-spacing: 0.03em;
 }
 
 .calendar-toggle-btn:hover {
@@ -286,22 +370,25 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
   margin-bottom: 3rem;
+  align-items: stretch;
 }
 
 .venue-detail-card {
   background: white;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 2.5rem;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  display: flex;
+  flex-direction: column;
 }
 
 .venue-detail-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(212, 175, 55, 0.12);
   border-color: rgba(212, 175, 55, 0.3);
 }
 
@@ -310,27 +397,26 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #d4af37, #b8935f);
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e);
+  border-radius: 16px 16px 0 0;
 }
 
 .venue-detail-card-badge {
   display: inline-block;
-  font-size: 0.7rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
   color: #d4af37;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 700;
-  background: rgba(212, 175, 55, 0.1);
-  padding: 0.35rem 1rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
 }
 
 .venue-detail-card-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
-  color: #3a3a3a;
+  color: #2c2c2c;
   font-weight: 600;
   margin-bottom: 1.5rem;
   line-height: 1.3;
@@ -358,23 +444,27 @@
 }
 
 .venue-detail-card-label {
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.75rem;
   color: #999;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-weight: 600;
   margin: 0 0 0.2rem;
 }
 
 .venue-detail-card-value {
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
   color: #4a4a4a;
   margin: 0;
   line-height: 1.5;
+  font-weight: 400;
 }
 
 .venue-detail-card-actions {
-  margin-top: 1.75rem;
+  margin-top: auto;
+  padding-top: 1.75rem;
 }
 
 .venue-action-btn {
@@ -383,11 +473,14 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 12px 28px;
-  border-radius: 50px;
-  font-size: 0.9rem;
+  border-radius: 4px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   width: 100%;
   text-align: center;
 }
@@ -406,16 +499,16 @@
 
 /* Venue Map Full Width */
 .venue-map-full {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
-.venue-map-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  color: #3a3a3a;
-  text-align: center;
+.venue-map-full .wd-script-title {
   margin-bottom: 1.5rem;
-  font-weight: 600;
+}
+
+/* venue-map-title is now handled by wd-script-title */
+.venue-map-title {
+  display: none;
 }
 
 .venue-details-grid {
@@ -575,15 +668,25 @@
 @media (max-width: 768px) {
   .events-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .event-card {
-    padding: 2rem;
+    padding: 1.75rem;
+  }
+
+  .wd-hero {
+    padding: 110px 1.5rem 35px;
+    margin-top: 56px;
+  }
+
+  .wd-script-title {
+    font-size: 2.2rem !important;
+    margin-bottom: 2rem;
   }
 
   .event-header h3 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .calendar-toggle-btn {
@@ -599,22 +702,30 @@
     width: 28px;
     height: 28px;
   }
-  
+
   .venue-cards-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .venue-detail-card {
-    padding: 2rem;
+    padding: 1.75rem;
   }
 
   .venue-detail-card-name {
     font-size: 1.3rem;
   }
 
-  .venue-map-title {
-    font-size: 1.3rem;
+  .venue-map-full .wd-script-title {
+    font-size: 1.8rem !important;
+  }
+
+  .event-details {
+    text-align: center;
+  }
+
+  .event-info h4 {
+    font-size: 1.1rem;
   }
 }
 
@@ -627,11 +738,11 @@
 }
 
 .countdown-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
   font-weight: 400;
-  letter-spacing: 0.08em;
-  color: #3a3a3a;
+  letter-spacing: 0.02em;
+  color: #5c5428;
   margin-bottom: 2.5rem;
   position: relative;
   z-index: 2;
@@ -675,26 +786,27 @@
 }
 
 .countdown-value {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 300;
   color: #d4af37;
   line-height: 1;
   display: block;
 }
 
 .countdown-unit {
-  font-size: 0.75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #888;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   margin-top: 0.5rem;
   display: block;
 }
 
 .countdown-separator {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 2.5rem;
   font-weight: 300;
   color: #d4af37;
@@ -704,6 +816,7 @@
 }
 
 .countdown-subtitle {
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.15rem;
   font-style: italic;
   color: #888;
@@ -713,11 +826,11 @@
 }
 
 .countdown-date {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   color: #d4af37;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   margin: 0;
 }
 
@@ -793,6 +906,404 @@
   }
 }
 
+/* ============================
+   WEDDING TIMELINE - Matching Invitation Image
+   ============================ */
+.timeline-section {
+  background: #ffffff;
+  padding: 4rem 0 5rem;
+}
+
+/* Instagram-style Card */
+.ig-card {
+  max-width: 480px;
+  margin: 0 auto 3.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dbdbdb;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.ig-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.14);
+}
+
+.ig-card-top {
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px 16px 10px;
+}
+
+.ig-card-photo {
+  width: 100%;
+  background: #fafafa;
+}
+
+.ig-card-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ig-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px 6px;
+}
+
+.ig-card-icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ig-card-icons svg,
+.ig-card-bookmark svg {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.ig-card-icons svg:hover,
+.ig-card-bookmark svg:hover {
+  transform: scale(1.15);
+}
+
+.ig-card-footer {
+  padding: 4px 14px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ig-card-likes {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+.ig-card-comments {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: #8e8e8e;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ig-card-comments:hover {
+  color: #2c2c2c;
+}
+
+@media (max-width: 768px) {
+  .ig-card {
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ig-card {
+    max-width: 100%;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+  }
+
+  .ig-card-icons {
+    gap: 12px;
+  }
+
+  .ig-card-icons svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .ig-card-bookmark svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .ig-card-likes {
+    font-size: 0.9rem;
+  }
+
+  .ig-card-comments {
+    font-size: 0.8rem;
+  }
+}
+
+.wedding-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.timeline-title {
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: #2c2c2c;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.timeline-title-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.2rem;
+  color: #2c2c2c;
+}
+
+.timeline-title-serif {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: #2c2c2c;
+  letter-spacing: 0.05em;
+}
+
+/* 3-column grid */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 2.5rem;
+  column-gap: 0;
+}
+
+.timeline-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Dashes connecting icons */
+.timeline-dash {
+  height: 2px;
+  flex: 1;
+  position: relative;
+}
+
+.timeline-dash::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    #2c2c2c 0px,
+    #2c2c2c 8px,
+    transparent 8px,
+    transparent 14px
+  );
+}
+
+.timeline-dash-left {
+  margin-right: 0.25rem;
+}
+
+.timeline-dash-right {
+  margin-left: 0.25rem;
+}
+
+/* Each event */
+.timeline-event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 90px;
+}
+
+.timeline-icon-circle {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-icon-svg {
+  width: 64px;
+  height: 64px;
+}
+
+.timeline-event-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-event-label,
+.timeline-event-sublabel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+}
+
+/* Signature cell (bottom right) */
+.timeline-signature-cell {
+  justify-content: center;
+}
+
+.timeline-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.timeline-sig-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #2c2c2c;
+  line-height: 1.2;
+}
+
+.timeline-sig-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  letter-spacing: 0.08em;
+  margin-top: 0.25rem;
+}
+
+/* ===== TIMELINE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .timeline-section {
+    padding: 3rem 0 3.5rem;
+  }
+
+  .timeline-header {
+    margin-bottom: 2rem;
+  }
+
+  .timeline-title-script {
+    font-size: 2.4rem;
+  }
+
+  .timeline-title-serif {
+    font-size: 2rem;
+  }
+
+  .timeline-grid {
+    row-gap: 2rem;
+  }
+
+  .timeline-icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .timeline-icon-svg {
+    width: 52px;
+    height: 52px;
+  }
+
+  .timeline-event-time {
+    font-size: 0.9rem;
+  }
+
+  .timeline-event-label,
+  .timeline-event-sublabel {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+  }
+
+  .timeline-sig-names {
+    font-size: 1.6rem;
+  }
+
+  .timeline-sig-date {
+    font-size: 0.85rem;
+  }
+
+  .timeline-event {
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-section {
+    padding: 2rem 0 2.5rem;
+  }
+
+  .timeline-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline-title-script {
+    font-size: 1.8rem;
+  }
+
+  .timeline-title-serif {
+    font-size: 1.5rem;
+  }
+
+  .timeline-grid {
+    row-gap: 1.5rem;
+    column-gap: 0;
+  }
+
+  .timeline-icon-circle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .timeline-icon-svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .timeline-event-time {
+    font-size: 0.75rem;
+  }
+
+  .timeline-event-label,
+  .timeline-event-sublabel {
+    font-size: 0.55rem;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-dash::before {
+    background: repeating-linear-gradient(
+      to right,
+      #2c2c2c 0px,
+      #2c2c2c 5px,
+      transparent 5px,
+      transparent 9px
+    );
+  }
+
+  .timeline-sig-names {
+    font-size: 1.3rem;
+  }
+
+  .timeline-sig-date {
+    font-size: 0.75rem;
+  }
+
+  .timeline-event {
+    min-width: 55px;
+  }
+}
+
 /* Scroll Animations */
 .animate-on-scroll {
   opacity: 0;
@@ -805,205 +1316,188 @@
   transform: translateY(0);
 }
 
-/* Attire Section */
-.attire-section {
+/* ============================
+   FINER DETAILS SECTION - Matching Invitation
+   ============================ */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
+
+.finer-details-section {
   padding: 6rem 0;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(139, 115, 85, 0.05) 100%);
+  background: #ffffff;
 }
 
-.attire-content {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.attire-group {
+.finer-details-title {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 3.5rem !important;
+  color: #2c2c2c !important;
+  font-weight: 400 !important;
+  text-align: center;
   margin-bottom: 3rem;
+  letter-spacing: 0.02em;
 }
 
-.attire-card {
-  background: white;
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+/* ATTIRE Section - Invitation Style */
+.attire-invitation {
+  max-width: 700px;
+  margin: 0 auto 4rem;
 }
 
-.attire-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-  border-color: #d4af37;
-}
-
-.attire-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #d4af37, #b8935f);
-}
-
-.attire-header {
+.attire-header-row {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
-.attire-icon {
-  font-size: 2.5rem;
-  color: #d4af37;
-}
-
-.attire-header h3 {
-  color: #000000;
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin: 0;
+.attire-title-typewriter {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 2rem;
+  color: #2c2c2c;
+  font-weight: 400;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin: 0;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-.attire-details {
+.attire-dotted-line {
+  flex: 1;
+  border-bottom: 3px dotted #2c2c2c;
+  margin-bottom: 4px;
+}
+
+.airplane-svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  transform: rotate(90deg);
+}
+
+/* Attire groups */
+.attire-group-invitation {
+  margin-bottom: 2.5rem;
+}
+
+.attire-group-label {
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: #2c2c2c;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin: 0 0 1rem;
   text-align: center;
 }
 
-.attire-type {
-  color: #4a4a4a;
-  font-size: 1.3rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
+.attire-group-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.attire-swatches {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding-top: 0.2rem;
+}
+
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.attire-description-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #2c2c2c;
   line-height: 1.6;
-}
-
-.attire-description {
-  color: #666;
-  font-size: 1.1rem;
-  font-style: italic;
   margin: 0;
+  font-weight: 400;
 }
 
-.attire-restriction {
-  color: #d4af37;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-/* Gifts Section */
-.gifts-section {
-  padding: 6rem 0;
-  background: #faf8f5;
-}
-
-.gifts-content {
-  max-width: 800px;
+/* GIFT GUIDE Section */
+.gift-guide-invitation {
+  max-width: 700px;
   margin: 0 auto;
 }
 
-.gift-card {
-  background: white;
-  border-radius: 20px;
-  padding: 4rem;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.gift-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-  border-color: #d4af37;
-}
-
-.gift-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #d4af37, #b8935f);
-}
-
-.gift-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.gift-icon {
-  font-size: 3rem;
-  color: #d4af37;
-}
-
-.gift-header h3 {
-  color: #000000;
+.gift-title-typewriter {
+  font-family: 'Special Elite', 'Courier New', monospace;
   font-size: 2rem;
-  font-weight: 600;
-  margin: 0;
+  color: #2c2c2c;
+  font-weight: 400;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin: 0 0 1.5rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-.gift-details {
+.gift-guide-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.gift-svg {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.gift-guide-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #2c2c2c;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
   text-align: center;
 }
 
-.gift-main {
-  color: #4a4a4a;
-  font-size: 1.4rem;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.gift-secondary {
-  color: #666;
-  font-size: 1.2rem;
-  font-style: italic;
-  margin: 0;
-  line-height: 1.6;
-}
+/* Legacy gift styles kept minimal for backwards compat */
 
 /* Special Notes Section */
 .special-notes-section {
-  padding: 6rem 0;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(139, 115, 85, 0.05) 100%);
+  padding: 5rem 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, rgba(139, 115, 85, 0.03) 100%);
 }
 
 .notes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 3rem;
-  max-width: 1200px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  max-width: 800px;
   margin: 0 auto;
+  align-items: stretch;
 }
 
 .note-card {
   background: white;
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .note-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-  border-color: #d4af37;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .note-card::before {
@@ -1012,68 +1506,73 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #d4af37, #b8935f);
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #e8d48b, #d4af37);
 }
 
-.note-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.note-icon {
-  font-size: 2.5rem;
-  color: #d4af37;
-}
-
-.note-header h3 {
-  color: #000000;
-  font-size: 1.8rem;
+.note-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin: 0;
+  color: #2c2c2c;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin: 0 0 1rem;
 }
 
-.note-content {
-  text-align: left;
+.note-card-divider {
+  width: 40px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto 1.5rem;
 }
 
-.note-question {
-  color: #4a4a4a;
-  font-size: 1.2rem;
+.note-card-question {
+  font-family: 'Cormorant Garamond', serif;
+  color: #d4af37;
+  font-size: 1.05rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.note-card-answer {
+  font-family: 'Cormorant Garamond', serif;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
+.note-card-closing {
+  font-family: 'Cormorant Garamond', serif;
+  color: #777;
+  font-size: 0.95rem;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0;
   line-height: 1.6;
 }
 
-.note-answer {
-  color: #666;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-
-.note-closing {
-  color: #d4af37;
-  font-size: 1.1rem;
-  font-weight: 500;
-  font-style: italic;
-  margin: 0;
-}
-
-/* Retro Calendar Styles */
+/* Retro Calendar - Standalone Elegant */
 .retro-calendar {
-  background: linear-gradient(135deg, #fff9e6 0%, #fef5e1 100%);
-  border: 3px solid #d4af37;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+  max-width: 420px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(212, 175, 55, 0.15);
   position: relative;
   overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.retro-calendar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .retro-calendar::before {
@@ -1082,68 +1581,64 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 8px;
-  background: repeating-linear-gradient(
-    45deg,
-    #d4af37,
-    #d4af37 10px,
-    #b8935f 10px,
-    #b8935f 20px
-  );
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e);
+  border-radius: 16px 16px 0 0;
 }
 
 .retro-cal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #d4af37;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
 }
 
 .retro-cal-month {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #3a3a3a;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #5c5428;
+  display: block;
+  letter-spacing: 0.02em;
 }
 
 .retro-cal-year {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
   font-weight: 600;
   color: #d4af37;
+  letter-spacing: 0.15em;
+  display: block;
+  margin-top: 0.25rem;
 }
 
 .retro-cal-subheader {
+  font-family: 'Cormorant Garamond', serif;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: #666;
-  margin-bottom: 1rem;
-  font-style: italic;
+  color: #999;
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.18em;
 }
 
 .retro-cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0.25rem;
-  margin-bottom: 1rem;
+  gap: 4px;
+  margin-bottom: 1.25rem;
 }
 
 .retro-cal-dayname {
   text-align: center;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #d4af37;
   padding: 0.5rem 0;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  letter-spacing: 0.08em;
 }
 
 .retro-cal-day {
@@ -1151,270 +1646,246 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #4a4a4a;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 4px;
-  background: white;
-  transition: all 0.3s ease;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.25s ease;
   cursor: default;
+  border: none;
 }
 
 .retro-cal-day:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-color: #d4af37;
-  transform: scale(1.1);
-  z-index: 1;
+  background: rgba(212, 175, 55, 0.08);
+  color: #d4af37;
 }
 
 .retro-cal-blank {
-  border: none;
   background: transparent;
   cursor: default;
 }
 
 .retro-cal-blank:hover {
   background: transparent;
-  border-color: transparent;
-  transform: none;
 }
 
 .retro-cal-wedding-day {
-  background: linear-gradient(135deg, #d4af37, #b8935f);
+  background: linear-gradient(135deg, #d4af37, #c9a96e);
   color: white;
   font-weight: 700;
-  border: 2px solid #d4af37;
   position: relative;
-  animation: retro-pulse 2s infinite;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+  animation: weddayGlow 2.5s ease-in-out infinite;
+}
+
+.retro-cal-wedding-day:hover {
+  background: linear-gradient(135deg, #c9a432, #b8941f);
+  color: white;
 }
 
 .retro-cal-wedding-day::after {
-  content: '★';
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  font-size: 0.8rem;
-  color: #d4af37;
-  background: white;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: none;
 }
 
-@keyframes retro-pulse {
+@keyframes weddayGlow {
   0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
   }
   50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
+    box-shadow: 0 2px 20px rgba(212, 175, 55, 0.6);
   }
 }
 
 .retro-cal-footer {
   text-align: center;
-  padding-top: 1rem;
-  border-top: 2px solid #d4af37;
-  margin-top: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
 }
 
 .retro-cal-event-label {
+  font-family: 'Cormorant Garamond', serif;
   display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.7rem;
+  font-weight: 600;
   color: #d4af37;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.35rem;
 }
 
 .retro-cal-event-date {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #3a3a3a;
-}
-
-/* Reception Details List */
-.reception-details-list {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.reception-detail-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-  transition: all 0.3s ease;
-}
-
-.reception-detail-item:last-child {
-  border-bottom: none;
-}
-
-.reception-detail-item:hover {
-  background: rgba(212, 175, 55, 0.05);
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
-  border-radius: 8px;
-}
-
-.reception-detail-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.reception-detail-value {
-  font-size: 0.95rem;
-  color: #3a3a3a;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
   font-weight: 500;
+  color: #3a3a3a;
+  letter-spacing: 0.03em;
 }
 
 @media (max-width: 768px) {
   .retro-calendar {
-    padding: 1rem;
-    margin-top: 1.5rem;
+    padding: 1.5rem;
+    max-width: 340px;
   }
-  
+
   .retro-cal-month {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
   }
-  
+
   .retro-cal-year {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
-  
+
   .retro-cal-day {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
-  
+
   .retro-cal-dayname {
     font-size: 0.6rem;
     padding: 0.4rem 0;
   }
-  
-  .retro-cal-wedding-day::after {
-    top: -6px;
-    right: -6px;
-    width: 14px;
-    height: 14px;
-    font-size: 0.7rem;
-  }
-  
-  .reception-detail-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
 }
 
 @media (max-width: 480px) {
   .retro-calendar {
-    padding: 0.75rem;
-    border-width: 2px;
+    padding: 1.25rem 1rem;
+    max-width: 300px;
   }
-  
+
   .retro-cal-month {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
-  
+
   .retro-cal-year {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
-  
+
   .retro-cal-subheader {
-    font-size: 0.8rem;
-  }
-  
-  .retro-cal-day {
     font-size: 0.7rem;
   }
-  
+
+  .retro-cal-day {
+    font-size: 0.75rem;
+  }
+
+  .retro-cal-grid {
+    gap: 3px;
+  }
+
   .retro-cal-dayname {
     font-size: 0.55rem;
     padding: 0.3rem 0;
   }
-  
+
   .retro-cal-event-date {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 }
 
-/* Responsive Design for New Sections */
+/* Responsive Design for Finer Details & Notes */
 @media (max-width: 768px) {
-  .attire-section,
-  .gifts-section,
+  .finer-details-section {
+    padding: 3rem 0;
+  }
+
+  .finer-details-title {
+    font-size: 2.5rem !important;
+  }
+
+  .attire-title-typewriter,
+  .gift-title-typewriter {
+    font-size: 1.5rem;
+  }
+
+  .attire-group-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .attire-description-text {
+    text-align: center;
+  }
+
+  .gift-guide-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .swatch {
+    width: 30px;
+    height: 30px;
+  }
+
   .special-notes-section {
     padding: 3rem 0;
   }
-  
-  .attire-card,
-  .gift-card,
-  .note-card {
-    padding: 2rem;
-  }
-  
-  .attire-header,
-  .gift-header,
-  .note-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-  
-  .attire-header h3,
-  .gift-header h3,
-  .note-header h3 {
-    font-size: 1.5rem;
-  }
-  
-  .attire-type,
-  .gift-main {
-    font-size: 1.2rem;
-  }
-  
-  .attire-description,
-  .gift-secondary,
-  .note-question {
-    font-size: 1rem;
-  }
-  
+
   .notes-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+    max-width: 500px;
   }
-  
-  .attire-icon,
-  .gift-icon,
-  .note-icon {
-    font-size: 2rem;
+
+  .note-card {
+    padding: 2rem;
   }
 }
 
 @media (max-width: 480px) {
+  .wd-hero {
+    padding: 95px 1rem 30px;
+    margin-top: 52px;
+  }
+
+  .wd-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .wd-hero-subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+
+  .wd-script-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .event-card {
+    padding: 1.5rem;
+  }
+
+  .event-header h3 {
+    font-size: 1.5rem;
+  }
+
+  .event-badge {
+    font-size: 0.7rem;
+  }
+
+  .event-time {
+    font-size: 0.9rem;
+  }
+
+  .calendar-toggle-btn {
+    padding: 11px 16px;
+    font-size: 0.85rem;
+  }
+
   .venue-detail-card {
     padding: 1.5rem;
   }
 
   .venue-detail-card-name {
     font-size: 1.15rem;
+    margin-bottom: 1rem;
   }
 
   .venue-detail-card-row {
     padding: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .venue-action-btn {
@@ -1422,26 +1893,52 @@
     font-size: 0.85rem;
   }
 
-  .attire-card,
-  .gift-card,
+  .venue-map-full .wd-script-title {
+    font-size: 1.5rem !important;
+  }
+
+  .finer-details-title {
+    font-size: 2rem !important;
+  }
+
+  .attire-title-typewriter,
+  .gift-title-typewriter {
+    font-size: 1.3rem;
+  }
+
+  .attire-header-row {
+    gap: 0.5rem;
+  }
+
+  .airplane-svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .swatch {
+    width: 28px;
+    height: 28px;
+  }
+
+  .attire-group-label {
+    font-size: 1rem;
+  }
+
+  .attire-description-text,
+  .gift-guide-text {
+    font-size: 0.95rem;
+  }
+
+  .gift-svg {
+    width: 60px;
+    height: 60px;
+  }
+
   .note-card {
     padding: 1.5rem;
   }
-  
-  .attire-header h3,
-  .gift-header h3,
-  .note-header h3 {
-    font-size: 1.3rem;
-  }
-  
-  .attire-type,
-  .gift-main {
-    font-size: 1.1rem;
-  }
-  
-  .attire-description,
-  .gift-secondary,
-  .note-question {
-    font-size: 0.9rem;
+
+  .note-card-title {
+    font-size: 1rem;
   }
 }

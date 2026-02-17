@@ -1,3 +1,10 @@
+/* Uniform font */
+.schedule-timeline,
+.schedule-notes,
+.day-highlights {
+  font-family: 'Cormorant Garamond', serif;
+}
+
 .schedule-timeline {
   max-width: 800px;
   margin: 0 auto 4rem;
@@ -205,5 +212,30 @@
   
   .day-highlights {
     padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-content {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .event-details h3 {
+    font-size: 1.2rem;
+  }
+
+  .event-icon {
+    font-size: 1.8rem;
+    min-width: 40px;
+  }
+
+  .day-highlights {
+    padding: 1.5rem;
+  }
+
+  .time-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
 }

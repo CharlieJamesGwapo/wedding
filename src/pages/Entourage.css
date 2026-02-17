@@ -1,0 +1,504 @@
+/* ── Entourage Page — Retro Travel Theme ── */
+
+/* ── Hero ── */
+.ent-hero {
+  background: #fff;
+  text-align: center;
+  padding: 130px 0 70px;
+  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ent-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.ent-hero-decos {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.ent-deco-svg {
+  width: 34px;
+  height: 34px;
+  opacity: 0.5;
+}
+
+.ent-hero-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.8rem;
+  color: #2c2c2c;
+  font-weight: 400;
+  margin: 0 0 0.75rem;
+}
+
+.ent-hero-divider {
+  width: 60px;
+  height: 2px;
+  background: #d4af37;
+  margin: 0 auto 1rem;
+  border-radius: 2px;
+}
+
+.ent-hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: #5c5428;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* ── Section titles ── */
+.ent-script-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  color: #2c2c2c;
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.ent-script-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background: #d4af37;
+  border-radius: 2px;
+}
+
+/* ── General section ── */
+.ent-section {
+  padding: 2.5rem 0;
+}
+
+/* ── Role blocks ── */
+.ent-role-block {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ent-role-block:last-child {
+  margin-bottom: 0;
+}
+
+.ent-role-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin: 0 0 0.6rem;
+  position: relative;
+  display: inline-block;
+}
+
+.ent-role-label::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #d4af37;
+  opacity: 0.5;
+}
+
+.ent-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ── Couple grid (Groom + Bride side-by-side) ── */
+.ent-couple-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.ent-couple-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e, #d4af37);
+}
+
+.ent-couple-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Pair grid (Best Man / Maid of Honor, Groomsmen / Bridesmaids) ── */
+.ent-pair-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.ent-pair-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e, #d4af37);
+}
+
+.ent-pair-compact {
+  max-width: 600px;
+  padding: 2rem 3rem;
+}
+
+/* ── Special roles section ── */
+.ent-special-grid {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.ent-special-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e, #d4af37);
+}
+
+.ent-special-grid .ent-role-block {
+  margin-bottom: 2.25rem;
+}
+
+/* ── Travel divider row ── */
+.ent-divider-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 1rem auto 0;
+  padding: 0 2rem;
+}
+
+.ent-divider-row .ent-deco-svg {
+  width: 28px;
+  height: 28px;
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+.ent-dashed-line {
+  flex: 1;
+  height: 0;
+  border-top: 2px dashed rgba(212, 175, 55, 0.3);
+}
+
+/* ── Principal Sponsors ── */
+.ent-sponsors-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.ent-sponsors-list {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.ent-sponsors-list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e, #d4af37);
+}
+
+.ent-sponsor-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 0.6rem 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+.ent-sponsor-row:last-child {
+  border-bottom: none;
+}
+
+.ent-sponsor-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* Compass watermark */
+.ent-compass-watermark {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  pointer-events: none;
+}
+
+.ent-compass-svg {
+  width: 160px;
+  height: 160px;
+}
+
+/* ── Secondary Sponsors ── */
+.ent-secondary-section {
+  padding-bottom: 4rem;
+}
+
+.ent-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.ent-secondary-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 2.25rem 1.75rem;
+  text-align: center;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ent-secondary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+}
+
+.ent-secondary-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #c9a96e);
+}
+
+.ent-secondary-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin: 0 0 0.5rem;
+}
+
+.ent-secondary-subtitle {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.35rem;
+  color: #5c5428;
+  margin: 0 0 1rem;
+  font-weight: 400;
+}
+
+.ent-secondary-divider {
+  width: 40px;
+  height: 1px;
+  background: #d4af37;
+  margin: 0 auto 1rem;
+  opacity: 0.5;
+}
+
+.ent-secondary-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .ent-hero {
+    padding: 105px 0 55px;
+    margin-top: 70px;
+  }
+
+  .ent-hero-title {
+    font-size: 2.8rem;
+  }
+
+  .ent-hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .ent-script-title {
+    font-size: 2.2rem;
+  }
+
+  .ent-couple-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2.5rem 2rem;
+  }
+
+  .ent-pair-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2.5rem 2rem;
+  }
+
+  .ent-pair-compact {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .ent-special-grid {
+    padding: 2.5rem 2rem;
+  }
+
+  .ent-sponsors-list {
+    padding: 2rem 1.5rem;
+  }
+
+  .ent-sponsor-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 0.75rem 0;
+  }
+
+  .ent-secondary-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .ent-compass-svg {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ent-hero {
+    padding: 92px 0 44px;
+    margin-top: 56px;
+  }
+
+  .ent-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .ent-hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .ent-hero-decos .ent-deco-svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .ent-script-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .ent-couple-grid,
+  .ent-pair-grid,
+  .ent-special-grid {
+    padding: 2rem 1.5rem;
+  }
+
+  .ent-role-label {
+    font-size: 0.78rem;
+  }
+
+  .ent-name {
+    font-size: 1rem;
+  }
+
+  .ent-sponsor-name {
+    font-size: 0.9rem;
+  }
+
+  .ent-secondary-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .ent-secondary-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .ent-secondary-name {
+    font-size: 0.88rem;
+  }
+
+  .ent-divider-row .ent-deco-svg {
+    width: 22px;
+    height: 22px;
+  }
+}

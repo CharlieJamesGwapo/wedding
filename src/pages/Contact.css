@@ -1,3 +1,11 @@
+/* Uniform font */
+.contact-intro,
+.contact-grid,
+.social-section,
+.confirmation {
+  font-family: 'Cormorant Garamond', serif;
+}
+
 .contact-intro {
   text-align: center;
   max-width: 800px;
@@ -331,5 +339,34 @@
   .submit-btn {
     width: 100%;
     max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  .contact-method {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .method-icon {
+    font-size: 2rem;
+    min-width: 40px;
+  }
+
+  .confirmation-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .submit-btn {
+    min-width: unset;
+    padding: 12px 28px;
+  }
+
+  .social-section {
+    padding: 2rem 1.5rem;
   }
 }

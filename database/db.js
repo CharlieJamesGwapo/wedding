@@ -170,10 +170,52 @@ const photoModel = {
   }
 };
 
+// Guestbook functions
+const guestbookModel = {
+  // Create a new wish
+  create: async (wishData) => {
+    const { name, relationship, message } = wishData;
+
+    const text = `
+      INSERT INTO guestbook_wishes (name, relationship, message)
+      VALUES ($1, $2, $3)
+      RETURNING *
+    `;
+
+    const values = [name, relationship || null, message];
+    return await query(text, values);
+  },
+
+  // Get all wishes
+  getAll: async () => {
+    const text = 'SELECT * FROM guestbook_wishes ORDER BY created_at DESC';
+    return await query(text);
+  },
+
+  // Get featured wishes
+  getFeatured: async () => {
+    const text = 'SELECT * FROM guestbook_wishes WHERE featured = TRUE ORDER BY created_at DESC';
+    return await query(text);
+  },
+
+  // Toggle featured status
+  toggleFeatured: async (id) => {
+    const text = 'UPDATE guestbook_wishes SET featured = NOT featured WHERE id = $1 RETURNING *';
+    return await query(text, [id]);
+  },
+
+  // Delete a wish
+  delete: async (id) => {
+    const text = 'DELETE FROM guestbook_wishes WHERE id = $1';
+    return await query(text, [id]);
+  }
+};
+
 module.exports = {
   pool,
   query,
   initializeDatabase,
   rsvpModel,
-  photoModel
+  photoModel,
+  guestbookModel
 };

@@ -1,342 +1,384 @@
-/* Vintage Elegant Wedding Invitation Styles */
+/* Wedding Invitation Design - Retro Nautical Theme (matching Wedding Details) */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
 
 .home {
   background: #faf8f5;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
 }
 
+/* ============================
+   HERO - Invitation Card
+   ============================ */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f5f0 0%, #e8e8e0 100%);
-  background-size: cover;
-  background-position: center;
-  background-attachment: scroll;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #4a4a4a;
+  color: #2c2c2c;
   position: relative;
   overflow: hidden;
-  margin-top: 0;
+  margin: 0;
   padding-top: 80px;
-  border: 3px dotted #d4af37;
-  margin: 0 20px;
-  border-radius: 10px;
+  padding-bottom: 40px;
 }
 
-.hero::before {
-  content: '';
+/* World map background */
+.hero-worldmap-svg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(212, 175, 116, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 147, 95, 0.1) 0%, transparent 50%);
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 750px;
+  height: 380px;
+  opacity: 0.7;
   pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, 
-    rgba(212, 175, 55, 0.02) 0%, 
-    transparent 25%, 
-    transparent 75%, 
-    rgba(212, 175, 55, 0.02) 100%);
-  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-content {
-  max-width: 1000px;
-  padding: 0 40px;
+  max-width: 700px;
+  padding: 40px 40px;
   position: relative;
   z-index: 2;
-  animation: fadeInUp 1.2s ease-out;
 }
 
-.hero-content::before {
-  content: '';
-  position: absolute;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
-}
-
-.hero-content::after {
-  content: '';
-  position: absolute;
-  bottom: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
-}
-
-.hero-content h1 {
-  font-size: 5rem;
+/* ============================
+   NAUTICAL DECORATIONS
+   ============================ */
+.hero-anchor-decor {
   margin-bottom: 1rem;
-  font-weight: 300;
-  letter-spacing: 0.15em;
-  color: #000000;
-  text-transform: uppercase;
-  line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: heroFadeIn 1s ease-out 0.1s backwards;
+}
+
+.hero-anchor-decor .retro-icon-svg {
+  width: 40px;
+  height: 40px;
+  opacity: 0.45;
+}
+
+.hero-retro-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 400px;
+  margin: 0 auto 2rem;
+  animation: heroFadeIn 1s ease-out 0.9s backwards;
+}
+
+.hero-dotted-line {
+  flex: 1;
+  border-bottom: 3px dotted #2c2c2c;
+  margin-bottom: 2px;
+  opacity: 0.4;
+}
+
+.hero-retro-divider .inline-airplane-svg {
+  width: 22px;
+  height: 22px;
+  transform: rotate(90deg);
+  opacity: 0.5;
+}
+
+.hero-retro-divider .inline-anchor-svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+}
+
+.hero-wave-decor {
+  margin-top: 0.5rem;
+  animation: heroFadeIn 1s ease-out 1.4s backwards;
+}
+
+.hero-wave-decor svg {
+  width: 200px;
+  height: 16px;
+}
+
+/* Retro icon base */
+.retro-icon-svg {
+  width: 64px;
+  height: 64px;
+}
+
+.inline-airplane-svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  transform: rotate(90deg);
+}
+
+.inline-anchor-svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ============================
+   NAMES - Script calligraphy
+   ============================ */
+.names-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 6rem;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+  color: #5c5428;
+  line-height: 0.95;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  gap: 0;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  text-shadow: none;
 }
 
-.hero-content h1 span {
-  animation: fadeInUp 1s ease-out backwards;
+.name-mark {
+  animation: heroFadeIn 1s ease-out 0.2s backwards;
+  display: block;
 }
 
-.hero-content h1 span:nth-child(1) { animation-delay: 0.1s; }
-.hero-content h1 span:nth-child(2) { 
-  animation-delay: 0.3s; 
-  color: #000000;
+.name-ampersand {
+  animation: heroFadeIn 1s ease-out 0.4s backwards;
   font-size: 3rem;
+  color: #5c5428;
+  line-height: 0.6;
+  margin: 0.1rem 0;
+  font-style: italic;
 }
-.hero-content h1 span:nth-child(3) { animation-delay: 0.5s; }
 
-.hero-content h2 {
-  font-size: 2rem;
-  margin-bottom: 3rem;
-  font-weight: 300;
-  letter-spacing: 0.25em;
-  color: #6a6a6a;
+.name-shayne {
+  animation: heroFadeIn 1s ease-out 0.6s backwards;
+  display: block;
+  margin-left: 2rem;
+}
+
+/* ============================
+   INVITATION TEXT
+   ============================ */
+.invitation-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #2c2c2c;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  position: relative;
+  line-height: 2;
+  margin-bottom: 1.5rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+  animation: heroFadeIn 1s ease-out 0.8s backwards;
+}
+
+/* ============================
+   DATE BLOCK
+   ============================ */
+.date-block {
+  margin-bottom: 2rem;
+  animation: heroFadeIn 1s ease-out 1s backwards;
+}
+
+.date-month {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.35em;
+  color: #2c2c2c;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid #2c2c2c;
   display: inline-block;
-  animation: fadeInUp 1s ease-out 0.7s backwards;
+  padding-bottom: 0.2rem;
 }
 
-.hero-content h2::before,
-.hero-content h2::after {
-  content: '∙';
-  position: absolute;
-  top: 50%;
-  color: #d4af37;
-  font-size: 1.4rem;
-  transform: translateY(-50%);
-}
-
-.hero-content h2::before {
-  left: -40px;
-}
-
-.hero-content h2::after {
-  right: -40px;
-}
-
-.hero-content .date-time {
+.date-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  font-family: 'Playfair Display', serif;
-  position: relative;
+  gap: 0;
+  margin-bottom: 0.2rem;
+  margin-top: 0.4rem;
 }
 
-.hero-content .date-time::before,
-.hero-content .date-time::after {
-  content: '';
-  height: 2px;
-  width: 30px;
-  background: #666;
+.date-rule-left,
+.date-rule-right {
+  flex: 1;
+  max-width: 40px;
+  height: 1.5px;
+  background: #2c2c2c;
 }
 
-.day-of-week,
-.time {
-  font-size: 1.2rem;
-  color: #666;
-  font-weight: 400;
-  letter-spacing: 0.1em;
+.date-day-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #2c2c2c;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 0.4rem 1.2rem;
+  border-top: 1.5px solid #2c2c2c;
+  border-bottom: 1.5px solid #2c2c2c;
 }
 
 .date-number {
-  font-size: 3rem;
-  color: #000000;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.2rem;
+  color: #2c2c2c;
+  font-weight: 400;
+  line-height: 1;
+  padding: 0 1rem;
 }
 
-.month-year {
-  font-size: 1.5rem;
-  margin-bottom: 3rem;
-  font-family: 'Playfair Display', serif;
-  letter-spacing: 0.2em;
-  color: #000000;
-  font-weight: 400;
+.date-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #2c2c2c;
+  letter-spacing: 0.12em;
+  font-weight: 500;
   text-transform: uppercase;
-  position: relative;
-  display: inline-block;
-  animation: fadeInUp 1s ease-out 0.9s backwards;
+  padding: 0.4rem 1.2rem;
+  border-top: 1.5px solid #2c2c2c;
+  border-bottom: 1.5px solid #2c2c2c;
 }
 
-.venue-details {
-  margin-bottom: 3rem;
-  animation: fadeInUp 1s ease-out 1.1s backwards;
-}
-
-.church-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  color: #000000;
+.date-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.35em;
+  color: #2c2c2c;
   font-weight: 400;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
+  margin-top: 0.1rem;
 }
 
-.church-address {
-  font-family: 'Lato', sans-serif;
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 2rem;
-  font-style: italic;
+/* ============================
+   VENUE SECTION
+   ============================ */
+.venue-section {
+  margin-bottom: 3rem;
+  animation: heroFadeIn 1s ease-out 1.2s backwards;
+}
+
+.venue-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.ceremony-row {
+  margin-bottom: 1.5rem;
+}
+
+.reception-row {
+  margin-top: 0.5rem;
+}
+
+.venue-icon {
+  flex-shrink: 0;
+}
+
+.church-icon {
+  width: 70px;
+  height: 85px;
+}
+
+.casa-logo {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+}
+
+.casa-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.casa-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: #2c2c2c;
+  text-transform: uppercase;
+}
+
+.casa-sub {
+  font-family: 'Great Vibes', cursive;
+  font-size: 0.75rem;
+  color: #2c2c2c;
+  margin-top: -2px;
+}
+
+.casa-building-icon {
+  width: 65px;
+  height: 55px;
+}
+
+.venue-text {
+  flex: 1;
+}
+
+.venue-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  color: #2c2c2c;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.venue-address {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 400;
 }
 
 .reception-label {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.5rem;
-  font-style: italic;
-}
-
-.reception-venue {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  color: #000000;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
-}
-
-.reception-address {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
-  color: #666;
+  color: #555;
+  margin: 1.2rem 0 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
   font-style: italic;
 }
 
-.hero-content .date {
-  font-size: 1.4rem;
-  margin-bottom: 4rem;
-  font-family: 'Lato', sans-serif;
-  letter-spacing: 0.2em;
-  color: #5a5a5a;
-  position: relative;
-  display: inline-block;
-  padding: 1.2rem 2.5rem;
-  border: 2px solid rgba(212, 175, 55, 0.3);
-  background: rgba(245, 242, 238, 0.9);
-  border-radius: 8px;
-  animation: fadeInUp 1s ease-out 0.9s backwards;
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
-}
-
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
-  animation: fadeInUp 1s ease-out 1.1s backwards;
-}
-
-.countdown-item {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 2.5rem;
-  border-radius: 8px;
-  border: 2px solid rgba(212, 175, 55, 0.2);
-  min-width: 140px;
-  position: relative;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.1);
-  transition: all 0.3s ease;
-}
-
-.countdown-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.15);
-}
-
-.countdown-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
-}
-
-.countdown-item::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
-}
-
-.countdown-item .number {
-  font-size: 4rem;
-  font-weight: 300;
-  display: block;
-  font-family: 'Playfair Display', serif;
-  color: #3a3a3a;
-  letter-spacing: 0.05em;
-  line-height: 1;
-}
-
-.countdown-item .label {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  margin-top: 0.8rem;
-  color: #6a6a6a;
-}
-
+/* ============================
+   HERO BUTTONS
+   ============================ */
 .hero-buttons {
   display: flex;
-  gap: 2.5rem;
+  gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 4rem;
-  animation: fadeInUp 1s ease-out 1.3s backwards;
+  margin-bottom: 2rem;
 }
 
 .hero-buttons .btn {
-  padding: 1.5rem 3.5rem;
+  padding: 1rem 2.5rem;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
+  font-weight: 600;
   background: transparent;
   border: 2px solid #d4af37;
   color: #3a3a3a;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  font-weight: 400;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 4px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
 }
 
 .hero-buttons .btn::before {
@@ -346,16 +388,16 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: #d4af37;
+  background: linear-gradient(135deg, #d4af37, #c9a432);
   transition: left 0.4s ease;
   z-index: -1;
 }
 
 .hero-buttons .btn:hover {
-  color: #faf8f5;
+  color: #fff;
   border-color: #d4af37;
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
 }
 
 .hero-buttons .btn:hover::before {
@@ -363,25 +405,28 @@
 }
 
 .hero-buttons .btn-primary {
-  background: #d4af37;
-  color: #faf8f5;
+  background: linear-gradient(135deg, #d4af37, #c9a432);
+  color: #fff;
   border-color: #d4af37;
-  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
 }
 
 .hero-buttons .btn-primary::before {
-  background: #b8941f;
+  background: linear-gradient(135deg, #b8941f, #a6850e);
 }
 
 .hero-buttons .btn-primary:hover {
   border-color: #b8941f;
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.35);
 }
 
-@keyframes fadeInUp {
+/* ============================
+   HERO ANIMATION
+   ============================ */
+@keyframes heroFadeIn {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -389,106 +434,12 @@
   }
 }
 
-.announcement {
-  background: #faf8f5;
-  text-align: center;
-  padding: 6rem 0;
-  position: relative;
-}
-
-.announcement::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
-}
-
-.announcement-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-.announcement-content p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  margin-bottom: 3rem;
-  color: #5a5a5a;
-  font-style: italic;
-}
-
-.announcement-details {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-top: 4rem;
-}
-
-.detail-item {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  text-align: left;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.detail-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, #d4af37, transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.detail-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-}
-
-.detail-item:hover::before {
-  opacity: 1;
-}
-
-.detail-item .icon {
-  font-size: 2rem;
-  min-width: 50px;
-  text-align: center;
-  color: #d4af37;
-  font-weight: 300;
-}
-
-.detail-item h3 {
-  color: #3a3a3a;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.detail-item p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #6a6a6a;
-  line-height: 1.6;
-}
-
+/* ============================
+   COUNTDOWN SECTION
+   ============================ */
 .countdown-section {
-  padding: 6rem 0;
-  margin-top: 80px;
+  padding: 5rem 0;
+  margin-top: 0;
   background: linear-gradient(135deg, #faf8f5 0%, #f5f0e8 100%);
   text-align: center;
   position: relative;
@@ -505,230 +456,510 @@
   background: linear-gradient(90deg, transparent, #d4af37, transparent);
 }
 
-/* Mobile Responsive */
+/* ============================
+   ANNOUNCEMENT - Retro Nautical
+   ============================ */
+.announcement {
+  background: #faf8f5;
+  text-align: center;
+  padding: 5rem 0 6rem;
+  position: relative;
+}
+
+.announcement::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+/* Retro typewriter header row */
+.ann-retro-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.ann-typewriter-title {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 1.8rem;
+  color: #2c2c2c;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.ann-dotted-line {
+  flex: 1;
+  border-bottom: 3px dotted #2c2c2c;
+  margin-bottom: 4px;
+  opacity: 0.4;
+}
+
+.ann-retro-header .inline-airplane-svg {
+  width: 24px;
+  height: 24px;
+  transform: rotate(90deg);
+  opacity: 0.5;
+}
+
+.ann-retro-header .inline-anchor-svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+
+.announcement-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: #5c5428;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.announcement-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto 2rem;
+}
+
+.announcement-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.9;
+  color: #5a5a5a;
+  font-style: italic;
+  font-weight: 400;
+  max-width: 650px;
+  margin: 0 auto 3.5rem;
+  padding: 0 1.5rem;
+}
+
+/* Announcement cards with nautical icons */
+.announcement-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  padding: 0 1.5rem;
+}
+
+.ann-card {
+  background: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 16px;
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.ann-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d4af37, #e8d48b, #d4af37);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.ann-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(212, 175, 55, 0.12);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.ann-card:hover::before {
+  opacity: 1;
+}
+
+.ann-card-icon-wrap {
+  margin-bottom: 0.5rem;
+}
+
+.ann-card-icon-wrap .retro-icon-svg {
+  width: 42px;
+  height: 42px;
+  opacity: 0.4;
+}
+
+.ann-card-icon {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #d4af37;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.ann-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #3a3a3a;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+}
+
+.ann-card-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  color: #777;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
+}
+
+.ann-cta {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ann-cta .btn {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 0.9rem 2.5rem;
+  border-radius: 4px;
+}
+
+/* Wave decoration at bottom of sections */
+.ann-wave-decor {
+  text-align: center;
+}
+
+.ann-wave-decor svg {
+  width: 200px;
+  height: 16px;
+}
+
+/* ============================
+   RESPONSIVE - Tablet
+   ============================ */
 @media (max-width: 768px) {
   .hero {
-    margin: 0 10px;
-    border-radius: 8px;
+    margin: 0;
+    padding-top: 70px;
   }
-  
+
+  .hero-worldmap-svg {
+    width: 450px;
+    height: 230px;
+    top: 70px;
+  }
+
   .hero-content {
-    padding: 0 20px;
+    padding: 20px 20px;
   }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-    flex-direction: column;
-    gap: 0.3rem;
+
+  .names-script {
+    font-size: 4rem;
   }
-  
-  .hero-content h1 span:nth-child(2) {
-    font-size: 2rem;
+
+  .name-ampersand {
+    font-size: 2.2rem;
   }
-  
-  .hero-content .date-time {
-    gap: 0.5rem;
+
+  .name-shayne {
+    margin-left: 1rem;
   }
-  
-  .day-of-week,
-  .time {
-    font-size: 1rem;
+
+  .invitation-text {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    line-height: 1.8;
   }
-  
+
+  .hero-anchor-decor .retro-icon-svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .hero-retro-divider {
+    max-width: 300px;
+  }
+
+  .date-month {
+    font-size: 1.3rem;
+  }
+
+  .date-day-name,
+  .date-time {
+    font-size: 0.95rem;
+    padding: 0.3rem 0.8rem;
+  }
+
   .date-number {
     font-size: 2.5rem;
   }
-  
-  .month-year {
-    font-size: 1.2rem;
+
+  .date-year {
+    font-size: 1.15rem;
   }
-  
-  .venue-details {
-    margin-bottom: 2rem;
+
+  .venue-row {
+    gap: 0.8rem;
   }
-  
-  .church-name {
-    font-size: 1.1rem;
+
+  .church-icon {
+    width: 55px;
+    height: 68px;
   }
-  
-  .church-address {
-    font-size: 0.9rem;
+
+  .casa-logo {
+    width: 65px;
   }
-  
-  .reception-venue {
+
+  .casa-building-icon {
+    width: 55px;
+    height: 45px;
+  }
+
+  .venue-name {
     font-size: 1rem;
   }
-  
-  .reception-address {
+
+  .venue-address {
+    font-size: 0.85rem;
+  }
+
+  .hero-buttons {
+    gap: 1rem;
+  }
+
+  .hero-buttons .btn {
+    padding: 0.9rem 2rem;
     font-size: 0.9rem;
   }
-  
-  .hero-content h2 {
-    font-size: 1.4rem;
-    margin-bottom: 2rem;
-  }
-  
-  .hero-content h2::before {
-    left: -20px;
-  }
-  
-  .hero-content h2::after {
-    right: -20px;
-  }
-  
-  .hero-content .date {
-    font-size: 1.1rem;
-    padding: 0.8rem 1.5rem;
-    margin-bottom: 3rem;
-  }
-  
-  .countdown {
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-  
-  .countdown-item {
-    padding: 1.5rem;
-    min-width: 100px;
-  }
-  
-  .countdown-item .number {
-    font-size: 2.5rem;
-  }
-  
-  .countdown-item .label {
-    font-size: 0.7rem;
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-  }
-  
-  .hero-buttons .btn {
-    width: 200px;
-    padding: 1rem 2rem;
-  }
-  
+
   .announcement {
-    padding: 4rem 0;
+    padding: 4rem 0 5rem;
   }
-  
-  .announcement-content {
-    padding: 0 20px;
+
+  .ann-typewriter-title {
+    font-size: 1.4rem;
   }
-  
-  .announcement-content p {
-    font-size: 1.1rem;
+
+  .ann-retro-header {
+    gap: 0.5rem;
   }
-  
-  .announcement-details {
+
+  .ann-retro-header .inline-airplane-svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ann-retro-header .inline-anchor-svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .announcement-cards {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.2rem;
+    max-width: 400px;
   }
-  
-  .detail-item {
-    flex-direction: column;
-    text-align: center;
-    padding: 1.5rem;
+
+  .ann-card {
+    padding: 2rem 1.5rem;
   }
-  
+
   .countdown-section {
     padding: 4rem 0;
   }
 }
 
+/* ============================
+   RESPONSIVE - Mobile
+   ============================ */
 @media (max-width: 480px) {
   .hero {
-    margin: 0 5px;
-    border-radius: 6px;
+    padding-top: 65px;
   }
-  
-  .hero-content h1 {
-    font-size: 2.5rem;
+
+  .hero-worldmap-svg {
+    width: 320px;
+    height: 170px;
+    top: 75px;
   }
-  
-  .hero-content h1 span:nth-child(2) {
-    font-size: 1.5rem;
+
+  .hero-content {
+    padding: 15px 15px;
   }
-  
-  .hero-content .date-time {
-    gap: 0.3rem;
-    flex-wrap: wrap;
+
+  .names-script {
+    font-size: 3rem;
   }
-  
-  .day-of-week,
-  .time {
-    font-size: 0.9rem;
+
+  .name-ampersand {
+    font-size: 1.8rem;
   }
-  
+
+  .name-shayne {
+    margin-left: 0.6rem;
+  }
+
+  .invitation-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    line-height: 1.7;
+  }
+
+  .hero-anchor-decor .retro-icon-svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hero-retro-divider {
+    max-width: 250px;
+    gap: 0.5rem;
+  }
+
+  .hero-retro-divider .inline-airplane-svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero-retro-divider .inline-anchor-svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-wave-decor svg {
+    width: 150px;
+    height: 12px;
+  }
+
+  .date-month {
+    font-size: 1.05rem;
+  }
+
+  .date-day-name,
+  .date-time {
+    font-size: 0.78rem;
+    padding: 0.25rem 0.5rem;
+    letter-spacing: 0.06em;
+  }
+
   .date-number {
     font-size: 2rem;
+    padding: 0 0.5rem;
   }
-  
-  .month-year {
+
+  .date-rule-left,
+  .date-rule-right {
+    max-width: 20px;
+  }
+
+  .date-year {
     font-size: 1rem;
   }
-  
-  .venue-details {
-    margin-bottom: 1.5rem;
+
+  .venue-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.4rem;
   }
-  
-  .church-name {
-    font-size: 1rem;
+
+  .venue-text {
+    text-align: center;
   }
-  
-  .church-address {
-    font-size: 0.8rem;
+
+  .church-icon {
+    width: 50px;
+    height: 62px;
   }
-  
-  .reception-venue {
+
+  .casa-logo {
+    width: 60px;
+  }
+
+  .casa-building-icon {
+    width: 50px;
+    height: 42px;
+  }
+
+  .venue-name {
     font-size: 0.9rem;
   }
-  
-  .reception-address {
+
+  .venue-address {
     font-size: 0.8rem;
   }
-  
-  .hero-content h2 {
-    font-size: 1.2rem;
+
+  .reception-label {
+    font-size: 0.9rem;
   }
-  
-  .hero-content .date {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
   }
-  
-  .countdown {
-    gap: 1rem;
+
+  .hero-buttons .btn {
+    width: 200px;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.85rem;
   }
-  
-  .countdown-item {
-    padding: 1rem;
-    min-width: 80px;
+
+  .ann-typewriter-title {
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
   }
-  
-  .countdown-item .number {
+
+  .ann-retro-header {
+    gap: 0.4rem;
+  }
+
+  .ann-retro-header .inline-airplane-svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ann-retro-header .inline-anchor-svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .announcement-title {
+    font-size: 2.2rem;
+  }
+
+  .ann-card {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+
+  .ann-card-icon-wrap .retro-icon-svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .ann-card-icon {
     font-size: 2rem;
   }
-  
-  .countdown-item .label {
-    font-size: 0.6rem;
-  }
-  
-  .hero-buttons .btn {
-    width: 180px;
-    padding: 0.8rem 1.5rem;
-    font-size: 0.8rem;
-  }
-  
-  .detail-item {
-    padding: 1rem;
-  }
-  
-  .detail-item .icon {
-    font-size: 1.5rem;
+
+  .ann-wave-decor svg {
+    width: 150px;
+    height: 12px;
   }
 }

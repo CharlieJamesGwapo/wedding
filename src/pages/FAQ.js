@@ -34,15 +34,11 @@ const FAQ = () => {
     },
     {
       question: "What if I have dietary restrictions?",
-      answer: "Please let us know about any dietary restrictions when you RSVP. Our caterers can accommodate most dietary needs including vegetarian, vegan, gluten-free, and food allergies."
+      answer: "Please let us know about any dietary restrictions. Our caterers can accommodate most dietary needs including vegetarian, vegan, gluten-free, and food allergies."
     },
     {
       question: "Can I take photos during the ceremony?",
       answer: "We ask that guests refrain from taking photos during the ceremony to allow our professional photographer to capture the moment and for everyone to be fully present. Feel free to take photos during the reception!"
-    },
-    {
-      question: "When should I RSVP by?",
-      answer: "Please confirm by sending your complete name."
     },
     {
       question: "What gifts are appropriate?",

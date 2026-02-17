@@ -1,167 +1,111 @@
-.dress-code-intro {
+/* Dress Code Page - Matching Invitation Style */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
+
+/* Finer Details title */
+.finer-title {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 3.5rem !important;
+  color: #2c2c2c !important;
+  font-weight: 400 !important;
   text-align: center;
-  max-width: 800px;
+  margin-bottom: 3rem;
+}
+
+/* ATTIRE Section */
+.attire-inv {
+  max-width: 700px;
   margin: 0 auto 4rem;
 }
 
-.dress-code-intro h2 {
-  color: #333;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
-
-.dress-code-intro p {
-  color: #666;
-  line-height: 1.8;
-  font-size: 1.1rem;
-}
-
-.attire-guide {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
-  margin-bottom: 4rem;
-}
-
-.attire-section {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.attire-section h3 {
-  color: #333;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.attire-recommendations {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.attire-item {
+.attire-header-row-dc {
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.attire-icon {
+.attire-typewriter {
+  font-family: 'Special Elite', 'Courier New', monospace;
   font-size: 2rem;
-  min-width: 50px;
+  color: #2c2c2c;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.attire-dots {
+  flex: 1;
+  border-bottom: 3px dotted #2c2c2c;
+  margin-bottom: 4px;
+}
+
+.airplane-svg-dc {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  transform: rotate(90deg);
+}
+
+.attire-block {
+  margin-bottom: 2.5rem;
+}
+
+.attire-label {
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: #2c2c2c;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin: 0 0 1rem;
   text-align: center;
 }
 
-.attire-item h4 {
-  color: #333;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+.attire-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
 }
 
-.attire-item p {
-  color: #666;
+.attire-colors {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding-top: 0.2rem;
+}
+
+.dc-swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.attire-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #2c2c2c;
   line-height: 1.6;
   margin: 0;
-  font-size: 0.95rem;
+  font-weight: 400;
 }
 
-.color-palette-section {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.color-palette-section h2 {
-  color: #333;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-
-.palette-description {
-  color: #666;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-}
-
-.color-palette {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.color-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.color-swatch {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.color-name {
-  color: #666;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.practical-tips {
-  margin-bottom: 4rem;
-}
-
-.practical-tips h2 {
-  color: #333;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-size: 2rem;
-}
-
-.tips-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.tip-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.tip-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.tip-card h3 {
-  color: #333;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-}
-
-.tip-card p {
-  color: #666;
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
+/* What to Avoid */
 .what-to-avoid {
   background: #fafafa;
   padding: 3rem;
   border-radius: 15px;
   margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .what-to-avoid h2 {
@@ -183,9 +127,19 @@
   gap: 1rem;
 }
 
-.avoid-icon {
-  font-size: 1.5rem;
-  min-width: 30px;
+.avoid-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #dc3545;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
 }
 
 .avoid-item p {
@@ -194,6 +148,7 @@
   margin: 0;
 }
 
+/* Final Note */
 .final-note {
   text-align: center;
   max-width: 800px;
@@ -212,25 +167,68 @@
   font-size: 1.1rem;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-  .attire-guide {
-    grid-template-columns: 1fr;
+  .finer-title {
+    font-size: 2.5rem !important;
   }
-  
-  .color-palette {
-    gap: 1rem;
+
+  .attire-typewriter {
+    font-size: 1.5rem;
   }
-  
-  .color-swatch {
-    width: 50px;
-    height: 50px;
+
+  .attire-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  
-  .tips-grid {
-    grid-template-columns: 1fr;
+
+  .attire-desc {
+    text-align: center;
   }
-  
+
+  .dc-swatch {
+    width: 30px;
+    height: 30px;
+  }
+
+  .what-to-avoid {
+    padding: 2rem;
+  }
+
   .avoid-list {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .finer-title {
+    font-size: 2rem !important;
+  }
+
+  .attire-typewriter {
+    font-size: 1.3rem;
+  }
+
+  .attire-header-row-dc {
+    gap: 0.5rem;
+  }
+
+  .airplane-svg-dc {
+    width: 22px;
+    height: 22px;
+  }
+
+  .dc-swatch {
+    width: 28px;
+    height: 28px;
+  }
+
+  .attire-label {
+    font-size: 1rem;
+  }
+
+  .attire-desc {
+    font-size: 0.95rem;
   }
 }

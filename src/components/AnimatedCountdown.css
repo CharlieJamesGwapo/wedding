@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
 .animated-countdown {
   text-align: center;
-  margin: 3rem 0;
+  margin: 2rem 0;
   position: relative;
 }
 
@@ -10,42 +12,27 @@
 }
 
 .countdown-title h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   color: #3a3a3a;
   margin-bottom: 1rem;
   font-weight: 300;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .decorative-line {
-  width: 100px;
-  height: 1px;
+  width: 80px;
+  height: 2px;
   background: linear-gradient(90deg, transparent, #d4af37, transparent);
   margin: 0 auto;
-}
-
-.heart-animation {
-  font-size: 3rem;
-  animation: heartbeat 1.5s ease-in-out infinite;
-  display: block;
-  margin: 0 auto;
-}
-
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  14% { transform: scale(1.3); }
-  28% { transform: scale(1); }
-  42% { transform: scale(1.3); }
-  70% { transform: scale(1); }
 }
 
 .countdown-circles {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
 }
 
@@ -53,7 +40,7 @@
   position: relative;
   width: 120px;
   height: 120px;
-  animation: fadeInUp 1s ease-out backwards;
+  animation: countFadeIn 0.8s ease-out backwards;
 }
 
 .countdown-circle:nth-child(1) { animation-delay: 0.1s; }
@@ -71,7 +58,7 @@
 }
 
 .progress-ring__circle {
-  transition: stroke-dashoffset 0.35s;
+  transition: stroke-dashoffset 0.5s ease;
   transform-origin: 50% 50%;
 }
 
@@ -80,12 +67,8 @@
 }
 
 @keyframes progressAnimation {
-  from {
-    stroke-dashoffset: 326.73;
-  }
-  to {
-    stroke-dashoffset: var(--final-offset, 0);
-  }
+  from { stroke-dashoffset: 326.73; }
+  to { stroke-dashoffset: var(--final-offset, 0); }
 }
 
 .countdown-number {
@@ -99,45 +82,47 @@
 
 .countdown-number .number {
   display: block;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 300;
   color: #3a3a3a;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   line-height: 1;
   letter-spacing: 0.05em;
 }
 
 .countdown-number .label {
   display: block;
-  font-size: 0.7rem;
-  color: #6a6a6a;
+  font-size: 0.65rem;
+  color: #777;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   margin-top: 0.5rem;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
 }
 
 .countdown-message {
-  animation: fadeInUp 1s ease-out 0.5s backwards;
+  animation: countFadeIn 0.8s ease-out 0.5s backwards;
 }
 
 .countdown-message p {
-  color: #5a5a5a;
+  font-family: 'Cormorant Garamond', serif;
+  color: #777;
   font-size: 1.1rem;
   font-style: italic;
   margin: 0;
-  font-family: 'Lato', sans-serif;
   letter-spacing: 0.05em;
+  font-weight: 400;
 }
 
 .countdown-message .decorative-line {
   margin-top: 1rem;
 }
 
-@keyframes fadeInUp {
+@keyframes countFadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -147,42 +132,64 @@
 
 @media (max-width: 768px) {
   .countdown-circles {
-    gap: 1rem;
+    gap: 1.5rem;
   }
-  
+
   .countdown-circle {
     width: 100px;
     height: 100px;
   }
-  
+
   .progress-ring {
     width: 100px;
     height: 100px;
   }
-  
+
   .progress-ring__circle {
     r: 42;
     cx: 50;
     cy: 50;
   }
-  
+
   .countdown-number .number {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
-  
+
   .countdown-number .label {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
   }
-  
+
   .countdown-title h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
-  
-  .heart-animation {
-    font-size: 2.5rem;
-  }
-  
+
   .decorative-line {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-circles {
+    gap: 1rem;
+  }
+
+  .countdown-circle {
     width: 80px;
+    height: 80px;
+  }
+
+  .progress-ring {
+    width: 80px;
+    height: 80px;
+  }
+
+  .countdown-number .number {
+    font-size: 1.3rem;
+  }
+
+  .countdown-number .label {
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    margin-top: 0.3rem;
   }
 }

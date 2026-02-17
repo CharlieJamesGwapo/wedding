@@ -63,38 +63,28 @@ const Navbar = () => {
   const navGroups = {
     wedding: {
       label: 'Wedding',
-      paths: ['/wedding-details', '/schedule', '/dress-code'],
+      paths: ['/wedding-details', '/entourage'],
       links: [
         { to: '/wedding-details', label: 'Details' },
-        { to: '/schedule', label: 'Schedule' },
-        { to: '/dress-code', label: 'Dress Code' },
+        { to: '/entourage', label: 'Entourage' },
       ]
     },
     guests: {
       label: 'Guests',
-      paths: ['/rsvp', '/guestbook', '/gallery', '/photo-share'],
+      paths: ['/guestbook', '/gallery', '/photo-share'],
       links: [
-        { to: '/rsvp', label: 'RSVP' },
         { to: '/guestbook', label: 'Guestbook' },
         { to: '/gallery', label: 'Gallery' },
         { to: '/photo-share', label: 'Photo Share' },
       ]
     },
-    info: {
-      label: 'Info',
-      paths: ['/faq', '/contact'],
-      links: [
-        { to: '/faq', label: 'FAQ' },
-        { to: '/contact', label: 'Contact' },
-      ]
-    }
   };
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} ref={navRef}>
       <div className="navbar-inner">
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          Shayne &amp; Mark
+          Mark &amp; Shayne
         </Link>
 
         {/* Desktop Navigation */}
@@ -134,7 +124,6 @@ const Navbar = () => {
             </div>
           ))}
 
-          <Link to="/rsvp" className="nav-rsvp-btn">RSVP</Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -155,7 +144,7 @@ const Navbar = () => {
       {/* Mobile Drawer */}
       <div className={`mobile-drawer ${isOpen ? 'open' : ''}`}>
         <div className="drawer-header">
-          <span className="drawer-title">Menu</span>
+          <span className="drawer-title">Mark &amp; Shayne</span>
           <button className="drawer-close" onClick={closeMenu} aria-label="Close menu">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -192,11 +181,9 @@ const Navbar = () => {
               </div>
             </div>
           ))}
+
         </div>
 
-        <div className="drawer-footer">
-          <Link to="/rsvp" className="drawer-rsvp-btn" onClick={closeMenu}>RSVP Now</Link>
-        </div>
       </div>
     </nav>
   );
