@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Special+Elite&display=swap');
+
+/* ─── Full-screen Splash ─── */
+.passport-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #636361;
+  overflow: hidden;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.passport-splash.passport-opening {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+/* ─── Book ─── */
+.passport-book {
+  display: flex;
+  width: 880px;
+  max-width: 95vw;
+  min-height: 550px;
+  overflow: hidden;
+}
+
+/* ─── Page ─── */
+.passport-page {
+  flex: 1;
+  display: flex;
+  position: relative;
+  background: #6e6e6c;
+  padding: 52px 48px;
+  opacity: 0;
+  transition: opacity 1s ease 0.2s, transform 1s ease 0.2s;
+}
+
+.passport-page.passport-visible { opacity: 1; }
+
+/* ─── Left ─── */
+.passport-left {
+  transform: translateX(-20px);
+  align-items: center;
+  justify-content: center;
+}
+.passport-left.passport-visible { transform: translateX(0); }
+
+.passport-left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Spine ─── */
+.passport-spine {
+  position: absolute;
+  right: 0;
+  top: 4%;
+  height: 92%;
+  width: 1.5px;
+  background: rgba(50, 50, 48, 0.7);
+}
+
+/* ─── Verse ─── */
+.passport-verse {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.passport-verse-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.75rem;
+  color: #d4ccb0;
+  line-height: 1.6;
+  margin: 0 0 18px 0;
+}
+
+.passport-verse-ref {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.35rem;
+  color: #c9a96e;
+  margin: 0;
+}
+
+/* ─── Compass Rose ─── */
+.passport-compass {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 20px;
+  opacity: 0.7;
+}
+
+.passport-compass-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Airplane Trail ─── */
+.passport-airplane-trail {
+  width: 300px;
+  height: 160px;
+  align-self: center;
+  margin: 0;
+}
+
+.passport-plane-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.passport-trail-path {
+  animation: passportDash 2.5s linear infinite;
+}
+
+@keyframes passportDash {
+  to { stroke-dashoffset: -56; }
+}
+
+/* ─── Anchor Watermark (left page) ─── */
+.passport-anchor-watermark {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 72px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.passport-anchor-wm-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Right ─── */
+.passport-right {
+  transform: translateX(20px);
+}
+.passport-right.passport-visible { transform: translateX(0); }
+
+/* ─── Ship Wheel Watermark (right page) ─── */
+.passport-wheel-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.passport-wheel-wm-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.passport-right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Title ─── */
+.passport-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 3.6rem;
+  color: #e2d9b8;
+  letter-spacing: 8px;
+  line-height: 1.1;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+/* ─── Subtitle ─── */
+.passport-subtitle {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.55rem;
+  color: #c9a96e;
+  margin: 0 0 22px 0;
+  font-style: italic;
+}
+
+/* ─── Monogram ─── */
+.passport-monogram {
+  width: 210px;
+  height: 210px;
+  margin: 0 auto 28px;
+}
+
+.passport-monogram-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Names ─── */
+.passport-names {
+  margin-bottom: 20px;
+}
+
+.passport-groom,
+.passport-bride {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.22rem;
+  color: #e2d9b8;
+  letter-spacing: 5px;
+  margin: 6px 0;
+  text-transform: uppercase;
+}
+
+/* ─── Date ─── */
+.passport-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #c9a96e;
+  letter-spacing: 5px;
+  margin: 8px 0 0 0;
+  text-transform: uppercase;
+}
+
+/* ─── Nautical Badge ─── */
+.passport-nautical-badge {
+  margin-top: 14px;
+  width: 180px;
+  height: 30px;
+}
+
+.passport-badge-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Button ─── */
+.passport-enter-btn {
+  margin-top: 44px;
+  padding: 16px 56px;
+  background: transparent;
+  border: 1.5px solid #c9a96e;
+  color: #e2d9b8;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.passport-enter-btn.passport-btn-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1s;
+}
+
+.passport-enter-btn:hover {
+  background: #c9a96e;
+  color: #3a3a38;
+  box-shadow: 0 4px 24px rgba(201, 169, 110, 0.3);
+}
+
+/* ═══════════════════════════════════ */
+/* ─── Tablet ─── */
+/* ═══════════════════════════════════ */
+@media (max-width: 768px) {
+  .passport-book {
+    flex-direction: column;
+    width: 92vw;
+    max-width: 440px;
+    min-height: auto;
+  }
+
+  .passport-page { padding: 36px 28px; }
+
+  .passport-left {
+    transform: translateY(-15px);
+    padding-bottom: 20px;
+  }
+  .passport-left.passport-visible { transform: translateY(0); }
+
+  .passport-right {
+    transform: translateY(15px);
+    border-top: 1.5px solid rgba(50, 50, 48, 0.6);
+    padding-top: 32px;
+  }
+  .passport-right.passport-visible { transform: translateY(0); }
+
+  .passport-spine {
+    right: auto; bottom: 0; left: 8%; top: auto;
+    width: 84%; height: 1.5px;
+  }
+
+  .passport-title { font-size: 2.6rem; letter-spacing: 6px; }
+  .passport-verse-text { font-size: 1.4rem; }
+  .passport-verse-ref { font-size: 1.1rem; }
+  .passport-verse { margin-bottom: 30px; }
+
+  .passport-compass { width: 130px; height: 130px; margin-bottom: 14px; }
+
+  .passport-airplane-trail {
+    width: 230px; height: 130px;
+    align-self: center; margin-left: 0;
+  }
+
+  .passport-wheel-watermark { width: 220px; height: 220px; }
+  .passport-anchor-watermark { width: 50px; height: 60px; bottom: 20px; right: 20px; }
+  .passport-nautical-badge { width: 150px; }
+
+  .passport-monogram { width: 170px; height: 170px; }
+  .passport-subtitle { font-size: 1.3rem; }
+  .passport-groom, .passport-bride { font-size: 1rem; letter-spacing: 3px; }
+  .passport-date { font-size: 1rem; letter-spacing: 3px; }
+  .passport-enter-btn { margin-top: 32px; padding: 13px 40px; font-size: 1rem; letter-spacing: 4px; }
+}
+
+/* ═══════════════════════════════════ */
+/* ─── Phone ─── */
+/* ═══════════════════════════════════ */
+@media (max-width: 480px) {
+  .passport-page { padding: 28px 20px; }
+  .passport-title { font-size: 2.1rem; letter-spacing: 4px; }
+  .passport-verse-text { font-size: 1.18rem; }
+  .passport-compass { width: 110px; height: 110px; }
+  .passport-airplane-trail { width: 190px; height: 110px; }
+  .passport-wheel-watermark { width: 180px; height: 180px; }
+  .passport-anchor-watermark { width: 40px; height: 48px; bottom: 14px; right: 14px; }
+  .passport-monogram { width: 145px; height: 145px; }
+  .passport-groom, .passport-bride { font-size: 0.88rem; letter-spacing: 2px; }
+  .passport-date { font-size: 0.88rem; letter-spacing: 2px; }
+  .passport-enter-btn { padding: 11px 30px; font-size: 0.9rem; letter-spacing: 3px; }
+}
