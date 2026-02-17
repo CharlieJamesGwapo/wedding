@@ -17,6 +17,7 @@ const WeddingPassport = ({ onEnter }) => {
 
   return (
     <div className={`passport-splash ${isOpening ? 'passport-opening' : ''}`}>
+      <div className="passport-scroll-wrap">
       <div className="passport-book">
         {/* ═══ LEFT PAGE ═══ */}
         <div className={`passport-page passport-left ${showContent ? 'passport-visible' : ''}`}>
@@ -265,6 +266,7 @@ const WeddingPassport = ({ onEnter }) => {
       >
         Embark on Our Journey
       </button>
+      </div>
     </div>
   );
 };
