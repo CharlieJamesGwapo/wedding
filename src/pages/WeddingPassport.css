@@ -210,14 +210,15 @@
 
 /* ─── Monogram ─── */
 .passport-monogram {
-  width: clamp(85px, 28vw, 210px);
-  height: clamp(85px, 28vw, 210px);
+  width: clamp(100px, 32vw, 240px);
   margin: 0 auto clamp(10px, 2vh, 28px);
 }
 
-.passport-monogram-svg {
+.passport-monogram-img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 /* ─── Names ─── */
@@ -263,12 +264,12 @@
 .passport-enter-btn {
   margin-top: clamp(12px, 2.5vh, 36px);
   margin-bottom: clamp(12px, 2vh, 30px);
-  padding: clamp(9px, 1.5vh, 16px) clamp(18px, 6vw, 56px);
+  padding: clamp(12px, 1.8vh, 18px) clamp(24px, 8vw, 64px);
   background: transparent;
   border: 1.5px solid #c9a96e;
   color: #e2d9b8;
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.7rem, 2.2vw, 1.08rem);
+  font-size: clamp(0.7rem, 2.5vw, 1.08rem);
   font-weight: 600;
   letter-spacing: clamp(2px, 0.5vw, 6px);
   text-transform: uppercase;
@@ -278,40 +279,76 @@
   opacity: 0;
   transform: translateY(20px);
   flex-shrink: 0;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .passport-enter-btn.passport-btn-visible {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 1s;
+  animation: passportPulse 2.5s ease-in-out infinite 2.5s;
 }
 
-.passport-enter-btn:hover {
+.passport-btn-text {
+  white-space: nowrap;
+}
+
+.passport-btn-hint {
+  font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+  letter-spacing: 4px;
+  opacity: 0.5;
+  animation: passportDots 1.8s ease-in-out infinite;
+}
+
+@keyframes passportPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(201, 169, 110, 0.2); }
+}
+
+@keyframes passportDots {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.passport-enter-btn:hover,
+.passport-enter-btn:active {
   background: #c9a96e;
   color: #3a3a38;
   box-shadow: 0 4px 24px rgba(201, 169, 110, 0.3);
+  animation: none;
 }
 
 /* ═══════════════════════════════════════════ */
 /* ─── Stacked layout for portrait mobile ─── */
 /* ═══════════════════════════════════════════ */
 @media (max-width: 768px) {
+  .passport-scroll-wrap {
+    justify-content: flex-start;
+    padding-top: clamp(16px, 4vh, 40px);
+  }
+
   .passport-book {
     flex-direction: column;
-    width: min(94vw, 440px);
+    width: min(92vw, 420px);
+  }
+
+  .passport-page {
+    padding: clamp(20px, 5vw, 36px) clamp(16px, 4vw, 32px);
   }
 
   .passport-left {
     transform: translateY(-15px);
-    padding-bottom: clamp(8px, 1.5vh, 20px);
+    padding-bottom: clamp(12px, 2vh, 24px);
   }
   .passport-left.passport-visible { transform: translateY(0); }
 
   .passport-right {
     transform: translateY(15px);
     border-top: 1.5px solid rgba(50, 50, 48, 0.6);
-    padding-top: clamp(16px, 3vh, 32px);
+    padding-top: clamp(20px, 4vh, 36px);
   }
   .passport-right.passport-visible { transform: translateY(0); }
 
@@ -319,15 +356,85 @@
     right: auto; bottom: 0; left: 8%; top: auto;
     width: 84%; height: 1.5px;
   }
+
+  .passport-title {
+    font-size: clamp(1.6rem, 8vw, 2.8rem);
+  }
+
+  .passport-monogram {
+    width: clamp(120px, 40vw, 200px);
+  }
+
+  .passport-groom,
+  .passport-bride {
+    font-size: clamp(0.55rem, 3vw, 0.95rem);
+    letter-spacing: clamp(1.5px, 0.8vw, 4px);
+  }
+
+  .passport-date {
+    font-size: clamp(0.55rem, 2.8vw, 0.9rem);
+  }
+
+  .passport-enter-btn {
+    padding: clamp(14px, 2vh, 18px) clamp(28px, 10vw, 56px);
+    font-size: clamp(0.65rem, 3vw, 0.95rem);
+  }
+
+  .passport-airplane-trail {
+    width: clamp(160px, 55vw, 280px);
+  }
+
+  .passport-compass {
+    width: clamp(60px, 22vw, 120px);
+    height: clamp(60px, 22vw, 120px);
+  }
+}
+
+/* ─── Small phones (375px and below) ─── */
+@media (max-width: 390px) {
+  .passport-book {
+    width: 96vw;
+  }
+
+  .passport-page {
+    padding: 16px 12px;
+  }
+
+  .passport-title {
+    font-size: clamp(1.3rem, 9vw, 2.2rem);
+    letter-spacing: 2px;
+  }
+
+  .passport-monogram {
+    width: clamp(100px, 45vw, 160px);
+  }
+
+  .passport-verse-text {
+    font-size: clamp(0.8rem, 4.5vw, 1.3rem);
+  }
+
+  .passport-enter-btn {
+    padding: 12px 24px;
+    letter-spacing: 2px;
+  }
 }
 
 /* ═══════════════════════════════════════════ */
 /* ─── Landscape mobile — keep side-by-side ─ */
 /* ═══════════════════════════════════════════ */
 @media (max-height: 500px) and (orientation: landscape) {
+  .passport-scroll-wrap {
+    justify-content: center;
+    padding-top: clamp(8px, 1vh, 16px);
+  }
+
   .passport-book {
     flex-direction: row;
     width: min(96vw, 820px);
+  }
+
+  .passport-page {
+    padding: clamp(10px, 2vw, 24px) clamp(10px, 2vw, 24px);
   }
 
   .passport-left {
@@ -339,12 +446,29 @@
   .passport-right {
     transform: translateX(15px);
     border-top: none;
-    padding-top: clamp(12px, 2vw, 20px);
+    padding-top: clamp(10px, 2vw, 20px);
   }
   .passport-right.passport-visible { transform: translateX(0); }
 
   .passport-spine {
     right: 0; top: 4%; bottom: auto; left: auto;
     width: 1.5px; height: 92%;
+  }
+
+  .passport-enter-btn {
+    margin-top: clamp(6px, 1vh, 14px);
+    margin-bottom: clamp(6px, 1vh, 14px);
+    padding: 8px 28px;
+  }
+}
+
+/* ─── Tablet portrait ─── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .passport-book {
+    width: min(90vw, 800px);
+  }
+
+  .passport-monogram {
+    width: clamp(140px, 20vw, 220px);
   }
 }
