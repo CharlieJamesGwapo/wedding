@@ -4,15 +4,23 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
 const { initializeDatabase, rsvpModel, photoModel, guestbookModel } = require('./database/db');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// Middleware
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Middleware — allow large payloads for base64 image uploads
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '20mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '20mb' }));
 
 // Serve static files from React app
 app.use(express.static(path.join(__dirname, 'build')));
@@ -156,34 +164,41 @@ app.post('/api/photos', async (req, res) => {
     const {
       uploaderName,
       caption,
-      imageUrl,
-      imageData,
-      fileSize,
-      fileType
+      imageData
     } = req.body;
 
     // Validate required fields
-    if (!uploaderName || !imageUrl) {
-      return res.status(400).json({ 
-        success: false, 
-        message: 'Uploader name and image URL are required' 
+    if (!uploaderName || !imageData) {
+      return res.status(400).json({
+        success: false,
+        message: 'Uploader name and image are required'
       });
     }
 
-    // Create photo entry in database
+    // Upload image to Cloudinary
+    const uploadResult = await cloudinary.uploader.upload(imageData, {
+      folder: 'wedding-photos',
+      transformation: [
+        { width: 1200, height: 1200, crop: 'limit', quality: 'auto', fetch_format: 'auto' }
+      ]
+    });
+
+    const imageUrl = uploadResult.secure_url;
+
+    // Save photo record in database (URL only, no base64)
     const result = await photoModel.create({
       uploaderName,
       caption,
       imageUrl,
-      imageData,
-      fileSize,
-      fileType
+      imageData: null,
+      fileSize: uploadResult.bytes,
+      fileType: uploadResult.format
     });
-    
+
     const photo = result.rows[0];
 
-    res.json({ 
-      success: true, 
+    res.json({
+      success: true,
       message: 'Photo uploaded successfully!',
       photo: {
         id: photo.id,
@@ -195,9 +210,9 @@ app.post('/api/photos', async (req, res) => {
 
   } catch (error) {
     console.error('Photo upload error:', error);
-    res.status(500).json({ 
-      success: false, 
-      message: 'Error uploading photo. Please try again.' 
+    res.status(500).json({
+      success: false,
+      message: 'Error uploading photo. Please try again.'
     });
   }
 });

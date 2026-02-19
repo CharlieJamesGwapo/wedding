@@ -403,6 +403,7 @@
   z-index: 2000;
   padding: 2rem;
   backdrop-filter: blur(4px);
+  -webkit-overflow-scrolling: touch;
 }
 
 .ps-modal-content {
@@ -411,7 +412,9 @@
   max-width: 600px;
   width: 100%;
   max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   position: relative;
   border: 1px solid rgba(212, 175, 55, 0.15);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
@@ -847,11 +850,14 @@
   }
 
   .ps-modal {
-    padding: 1rem;
+    padding: 0.5rem;
+    align-items: flex-end;
   }
 
   .ps-modal-content {
     max-height: 95vh;
+    max-height: 95dvh;
+    border-radius: 16px 16px 0 0;
   }
 
   .ps-modal-header {

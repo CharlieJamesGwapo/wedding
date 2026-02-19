@@ -59,40 +59,10 @@ const PhotoShare = () => {
       setLoading(true);
       const response = await fetch('/api/photos');
       const result = await response.json();
-
-      if (result.success) {
-        setPhotos(result.photos);
-      } else {
-        setPhotos([
-          {
-            id: 1,
-            url: 'https://images.unsplash.com/photo-1519741497675-93ad6298aa8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-            uploader: 'Sarah Johnson',
-            caption: 'Beautiful sunset at the venue!',
-            timestamp: '2024-01-15 18:30',
-            likes: 24
-          },
-          {
-            id: 2,
-            url: 'https://images.unsplash.com/photo-1519225471986-9bb232d97d6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-            uploader: 'David Thompson',
-            caption: 'The couple looks amazing together!',
-            timestamp: '2024-01-16 14:22',
-            likes: 18
-          }
-        ]);
-      }
+      setPhotos(result.success ? result.photos : []);
     } catch (error) {
-      setPhotos([
-        {
-          id: 1,
-          url: 'https://images.unsplash.com/photo-1519741497675-93ad6298aa8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-          uploader: 'Sarah Johnson',
-          caption: 'Beautiful sunset at the venue!',
-          timestamp: '2024-01-15 18:30',
-          likes: 24
-        }
-      ]);
+      console.error('Error fetching photos:', error);
+      setPhotos([]);
     } finally {
       setLoading(false);
     }
@@ -157,44 +127,47 @@ const PhotoShare = () => {
     setUploadError('');
 
     try {
-      for (let i = 0; i <= 100; i += 10) {
-        await new Promise(resolve => setTimeout(resolve, 50));
-        setUploadProgress(i);
+      // Convert file to base64
+      setUploadProgress(10);
+      const base64String = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.readAsDataURL(selectedFile);
+      });
+
+      setUploadProgress(30);
+
+      // Upload to server (which uploads to Cloudinary)
+      const response = await fetch('/api/photos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          uploaderName: uploaderName.trim(),
+          caption: caption.trim() || 'Beautiful moment!',
+          imageData: base64String
+        })
+      });
+
+      setUploadProgress(80);
+
+      const result = await response.json();
+      if (result.success) {
+        setUploadProgress(100);
+        await fetchPhotos();
+        setSelectedFile(null);
+        setCaption('');
+        setUploaderName('');
+        setShowUploadModal(false);
+        setUploadProgress(0);
+        setUploading(false);
+        alert('Photo uploaded successfully! Thank you for sharing your memories.');
+      } else {
+        throw new Error(result.message || 'Upload failed');
       }
-
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        const base64String = reader.result;
-        const response = await fetch('/api/photos', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            uploaderName: uploaderName.trim(),
-            caption: caption.trim() || 'Beautiful moment!',
-            imageUrl: base64String,
-            imageData: base64String,
-            fileSize: selectedFile.size,
-            fileType: selectedFile.type
-          })
-        });
-
-        const result = await response.json();
-        if (result.success) {
-          await fetchPhotos();
-          setSelectedFile(null);
-          setCaption('');
-          setUploaderName('');
-          setShowUploadModal(false);
-          setUploadProgress(0);
-          setUploading(false);
-          alert('Photo uploaded successfully! Thank you for sharing your memories.');
-        } else {
-          throw new Error(result.message || 'Upload failed');
-        }
-      };
-      reader.readAsDataURL(selectedFile);
     } catch (error) {
-      setUploadError('Upload failed. Please try again.');
+      console.error('Upload error:', error);
+      setUploadError(error.message || 'Upload failed. Please try again.');
       setUploading(false);
       setUploadProgress(0);
     }
@@ -211,19 +184,16 @@ const PhotoShare = () => {
         setPhotos(prev => prev.map(photo =>
           photo.id === photoId ? { ...photo, likes: result.likes } : photo
         ));
-      } else {
-        setPhotos(prev => prev.map(photo =>
-          photo.id === photoId ? { ...photo, likes: photo.likes + 1 } : photo
-        ));
       }
     } catch (error) {
-      setPhotos(prev => prev.map(photo =>
-        photo.id === photoId ? { ...photo, likes: photo.likes + 1 } : photo
-      ));
+      console.error('Error liking photo:', error);
     }
   };
 
-  const openUploadModal = () => { setShowUploadModal(true); };
+  const openUploadModal = () => {
+    setShowUploadModal(true);
+    document.body.style.overflow = 'hidden';
+  };
   const closeUploadModal = () => {
     setShowUploadModal(false);
     setSelectedFile(null);
@@ -232,6 +202,7 @@ const PhotoShare = () => {
     setUploadError('');
     setUploadProgress(0);
     setDragActive(false);
+    document.body.style.overflow = '';
   };
 
   return (
